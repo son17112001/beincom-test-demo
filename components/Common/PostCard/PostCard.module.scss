@@ -1,0 +1,193 @@
+@import '../../../styles/mixins';
+
+.postCard {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    border: 1px solid #e1e5e9;
+
+    &:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+    }
+
+    @include mobile {
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+}
+
+.postHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.avatarText {
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.avatarSkeleton {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 50%;
+}
+
+.userDetails {
+    flex: 1;
+    min-width: 0;
+}
+
+.authorName {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0 0 4px 0;
+    line-height: 1.4;
+}
+
+.nameSkeleton {
+    height: 16px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 4px;
+    width: 120px;
+}
+
+.postId {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin: 0;
+}
+
+.postContent {
+    margin-bottom: 16px;
+}
+
+.postTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0 0 12px 0;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    @include mobile {
+        font-size: 16px;
+    }
+}
+
+.postBody {
+    position: relative;
+}
+
+.postText {
+    font-size: 14px;
+    color: #5a6c7d;
+    line-height: 1.6;
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.readMoreBtn {
+    background: none;
+    border: none;
+    color: #3498db;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 0;
+    margin-top: 8px;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: #2980b9;
+        text-decoration: underline;
+    }
+}
+
+.postFooter {
+    border-top: 1px solid #ecf0f1;
+    padding-top: 16px;
+}
+
+.postActions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    @include mobile {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+.viewBtn {
+    background: #3498db;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    display: inline-block;
+
+    &:hover {
+        background: #2980b9;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+    }
+
+    @include mobile {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.commentCount {
+    font-size: 14px;
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}

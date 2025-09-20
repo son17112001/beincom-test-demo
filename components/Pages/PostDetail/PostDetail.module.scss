@@ -1,0 +1,246 @@
+@import '../../../styles/mixins';
+
+.postDetail {
+    padding: 20px 0;
+    min-height: 100vh;
+
+    @include mobile {
+        padding: 16px 0;
+    }
+}
+
+.backButton {
+    margin-bottom: 24px;
+
+    @include mobile {
+        margin-bottom: 16px;
+    }
+}
+
+.post {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 32px;
+    margin-bottom: 32px;
+    border: 1px solid #e1e5e9;
+
+    @include mobile {
+        padding: 20px;
+        margin-bottom: 24px;
+    }
+}
+
+.postHeader {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.avatarText {
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.avatarSkeleton {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 50%;
+}
+
+.userDetails {
+    flex: 1;
+    min-width: 0;
+}
+
+.authorName {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+}
+
+.nameSkeleton {
+    height: 18px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 4px;
+    width: 150px;
+}
+
+.postMeta {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin: 0;
+}
+
+.postContent {
+    .postTitle {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin: 0 0 20px 0;
+        line-height: 1.3;
+
+        @include mobile {
+            font-size: 1.5rem;
+        }
+    }
+
+    .postBody {
+        p {
+            font-size: 16px;
+            color: #5a6c7d;
+            line-height: 1.7;
+            margin: 0;
+            white-space: pre-wrap;
+        }
+    }
+}
+
+.commentsSection {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 32px;
+    border: 1px solid #e1e5e9;
+
+    @include mobile {
+        padding: 20px;
+    }
+}
+
+.commentsTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0 0 24px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #ecf0f1;
+
+    @include mobile {
+        font-size: 1.25rem;
+    }
+}
+
+.commentsLoading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    gap: 12px;
+}
+
+.commentsList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.comment {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+
+    @include mobile {
+        padding: 16px;
+    }
+}
+
+.commentHeader {
+    margin-bottom: 12px;
+}
+
+.commentAuthor {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0 0 4px 0;
+}
+
+.commentEmail {
+    font-size: 12px;
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+.commentBody {
+    font-size: 14px;
+    color: #5a6c7d;
+    line-height: 1.6;
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.loadingContainer,
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    gap: 16px;
+    text-align: center;
+    padding: 20px;
+}
+
+.loadingSpinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.loadingContainer p,
+.commentsLoading p,
+.errorContainer p {
+    color: #7f8c8d;
+    font-size: 16px;
+    margin: 0;
+}
+
+.errorContainer h2 {
+    color: #e74c3c;
+    margin: 0;
+}
