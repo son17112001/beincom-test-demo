@@ -17,5 +17,25 @@
     "role": "user",
     "createdAt": "2025-09-20T12:05:40.584Z",
     "updatedAt": "2025-09-20T12:05:40.584Z"
+  },
+  {
+    "id": 3,
+    "email": "son171120012@gmail.com",
+    "password": "S@n17112@@1",
+    "name": "Nguyễn Văn Sơn",
+    "username": "son17112001",
+    "role": "user",
+    "createdAt": "2025-09-20T12:35:06.100Z",
+    "updatedAt": "2025-09-20T12:35:06.100Z"
+  },
+  {
+    "id": 4,
+    "email": "son17001@gmail.com",
+    "password": "S@n17112@@1",
+    "name": "Nguyen Van SOn",
+    "username": "son1123",
+    "role": "user",
+    "createdAt": "2025-09-20T12:45:27.769Z",
+    "updatedAt": "2025-09-20T12:45:27.769Z"
   }
 ]

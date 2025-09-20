@@ -1,36 +1,88 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import PasswordInput, { PasswordField } from "@/components/Common/PasswordInput";
-
 import { useAuth } from "../../../hooks/useAuth";
+import { validateEmail, validatePassword } from "../../../utils/validation";
 import AuthLeftPanel from "../../Common/AuthLeftPanel";
 import Button from "../../Common/Button";
-import { Form, useForm } from "../../Common/Form";
-import { InputField } from "../../Common/Input";
+import InputField from "../../Common/InputField";
+import PasswordField from "../../Common/PasswordField";
 
 import styles from "./Login.module.scss";
 
 const Login = () => {
     const router = useRouter();
     const { isAuthenticated, loading, login } = useAuth();
-    const [ form ] = useForm();
 
-    useEffect(() => {
-        if (!loading && isAuthenticated) {
-            router.push("/");
+    // Form state
+    const [ formData, setFormData ] = useState({
+        email: "",
+        password: "",
+    });
+
+    // Validation errors
+    const [ errors, setErrors ] = useState({
+        email: null,
+        password: null,
+    });
+
+    // Loading state
+    const [ isLoading, setIsLoading ] = useState(false);
+
+    const handleInputChange = (field, value) => {
+        setFormData((prev) => ({
+            ...prev,
+            [field]: value,
+        }));
+
+        // Real-time validation
+        let error = null;
+        switch (field) {
+            case "email":
+                error = validateEmail(value);
+                break;
+            case "password":
+                error = validatePassword(value);
+                break;
+            default:
+                break;
         }
-    }, [ isAuthenticated, loading, router ]);
 
-    const handleSubmit = async (values) => {
-        const result = await login({
-            email: values.email,
-            password: values.password,
-        });
+        setErrors((prev) => ({
+            ...prev,
+            [field]: error,
+        }));
+    };
 
-        if (result.success) {
-            router.push("/");
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // Validate all fields
+        const newErrors = {
+            email: validateEmail(formData.email),
+            password: validatePassword(formData.password),
+        };
+
+        setErrors(newErrors);
+
+        // Check if there are any errors
+        const hasErrors = Object.values(newErrors).some((error) => error !== null);
+        if (hasErrors) return;
+
+        // Set loading state
+        setIsLoading(true);
+
+        try {
+            // Submit form
+            const result = await login(formData);
+            if (result.success) {
+                router.push("/");
+            }
+        } catch (error) {
+            console.error("Login error:", error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -65,7 +117,8 @@ const Login = () => {
                         Enter your credentials to access your account.
                     </p>
 
-                    <div className={styles.socialLogin}>
+                    {/* Temporarily hidden social login */}
+                    {/* <div className={styles.socialLogin}>
                         <button className={`${styles.socialBtn} ${styles.google}`}>
                             <div className={styles.icon}></div>
                             Google
@@ -81,39 +134,43 @@ const Login = () => {
 
                     <div className={styles.divider}>
                         <span>or</span>
-                    </div>
+                    </div> */}
 
-                    <Form
-                        form={form}
-                        initialValues={{
-                            email: "",
-                            password: "",
-                        }}
-                        onFinish={handleSubmit}
-                    >
-                        <div className={styles.formGroup}>
-                            <InputField
-                                name="email"
-                                label="Email"
-                                type="email"
-                                placeholder="Your email"
-                                required
-                            />
-                            <PasswordField
-                                name="password"
-                                label="Password"
-                                placeholder="Your password"
-                                required
-                            />
-                            <Button type="submit" buttonType="submit" fullWidth>
-                                Log In
-                            </Button>
-                        </div>
-                    </Form>
+                    <form onSubmit={handleSubmit} className={styles.form}>
+                        <InputField
+                            label="Email"
+                            type="email"
+                            placeholder="Your email"
+                            value={formData.email}
+                            onChange={(e) => handleInputChange("email", e.target.value)}
+                            error={errors.email}
+                            required
+                        />
 
-                    <Link href="/forgot-password" className={styles.forgotPassword}>
+                        <PasswordField
+                            label="Password"
+                            placeholder="Your password"
+                            value={formData.password}
+                            onChange={(e) => handleInputChange("password", e.target.value)}
+                            error={errors.password}
+                            required
+                            showRequirements={true}
+                        />
+
+                        <Button
+                            type="submit"
+                            buttonType="submit"
+                            fullWidth
+                            disabled={isLoading}
+                        >
+                            {isLoading ? "Logging in..." : "Log In"}
+                        </Button>
+                    </form>
+
+                    {/* Temporarily hidden forgot password */}
+                    {/* <Link href="/forgot-password" className={styles.forgotPassword}>
                         Forgot password?
-                    </Link>
+                    </Link> */}
 
                     <p className={styles.signupLink}>
                         Dont have an account? <Link href="/register">Sign up</Link>

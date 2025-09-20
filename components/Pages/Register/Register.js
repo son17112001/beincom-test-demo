@@ -1,39 +1,105 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { PasswordField } from "@/components/Common/PasswordInput";
-
 import { useAuth } from "../../../hooks/useAuth";
+import {
+    validateEmail,
+    validateFullName,
+    validatePassword,
+    validateUsername,
+} from "../../../utils/validation";
 import AuthLeftPanel from "../../Common/AuthLeftPanel";
 import Button from "../../Common/Button";
-import { Form, useForm } from "../../Common/Form";
-import { InputField } from "../../Common/Input";
+import InputField from "../../Common/InputField";
+import PasswordField from "../../Common/PasswordField";
 
 import styles from "./Register.module.scss";
 
 const Register = () => {
     const router = useRouter();
     const { isAuthenticated, loading, register } = useAuth();
-    const [ form ] = useForm();
 
-    useEffect(() => {
-        if (!loading && isAuthenticated) {
-            router.push("/");
+    // Form state
+    const [ formData, setFormData ] = useState({
+        email: "",
+        username: "",
+        fullName: "",
+        password: "",
+    });
+
+    // Validation errors
+    const [ errors, setErrors ] = useState({
+        email: null,
+        username: null,
+        fullName: null,
+        password: null,
+    });
+
+    // Loading state
+    const [ isLoading, setIsLoading ] = useState(false);
+
+    const handleInputChange = (field, value) => {
+        setFormData((prev) => ({
+            ...prev,
+            [field]: value,
+        }));
+
+        // Real-time validation
+        let error = null;
+        switch (field) {
+            case "email":
+                error = validateEmail(value);
+                break;
+            case "username":
+                error = validateUsername(value);
+                break;
+            case "fullName":
+                error = validateFullName(value);
+                break;
+            case "password":
+                error = validatePassword(value);
+                break;
+            default:
+                break;
         }
-    }, [ isAuthenticated, loading, router ]);
 
-    const handleSubmit = async (values) => {
-        console.log(values);
-        const result = await register({
-            email: values.email,
-            username: values.username,
-            fullName: values.fullName,
-            password: values.password,
-        });
+        setErrors((prev) => ({
+            ...prev,
+            [field]: error,
+        }));
+    };
 
-        if (result.success) {
-            router.push("/");
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // Validate all fields
+        const newErrors = {
+            email: validateEmail(formData.email),
+            username: validateUsername(formData.username),
+            fullName: validateFullName(formData.fullName),
+            password: validatePassword(formData.password),
+        };
+
+        setErrors(newErrors);
+
+        // Check if there are any errors
+        const hasErrors = Object.values(newErrors).some((error) => error !== null);
+        if (hasErrors) return;
+
+        // Set loading state
+        setIsLoading(true);
+
+        try {
+            // Submit form
+            const result = await register(formData);
+            if (result.success) {
+                router.push("/");
+            }
+        } catch (error) {
+            console.error("Registration error:", error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -68,7 +134,8 @@ const Register = () => {
                         Create your account to join our community.
                     </p>
 
-                    <div className={styles.socialLogin}>
+                    {/* Temporarily hidden social login */}
+                    {/* <div className={styles.socialLogin}>
                         <button className={`${styles.socialBtn} ${styles.google}`}>
                             <div className={styles.icon}></div>
                             Google
@@ -84,55 +151,58 @@ const Register = () => {
 
                     <div className={styles.divider}>
                         <span>or</span>
-                    </div>
+                    </div> */}
 
-                    <Form
-                        form={form}
-                        initialValues={{
-                            email: "",
-                            username: "",
-                            fullName: "",
-                            password: "",
-                        }}
-                        onFinish={handleSubmit}
-                    >
-                        <div className={styles.formGroup}>
-                            <InputField
-                                name="email"
-                                label="Email"
-                                type="email"
-                                placeholder="Your email"
-                                required
-                            />
+                    <form onSubmit={handleSubmit} className={styles.form}>
+                        <InputField
+                            label="Email"
+                            type="email"
+                            placeholder="Your email"
+                            value={formData.email}
+                            onChange={(e) => handleInputChange("email", e.target.value)}
+                            error={errors.email}
+                            required
+                        />
 
-                            <InputField
-                                name="username"
-                                label="Username"
-                                type="text"
-                                placeholder="Your username"
-                                required
-                            />
+                        <InputField
+                            label="Username"
+                            type="text"
+                            placeholder="Your username"
+                            value={formData.username}
+                            onChange={(e) => handleInputChange("username", e.target.value)}
+                            error={errors.username}
+                            required
+                        />
 
-                            <InputField
-                                name="fullName"
-                                label="Full name"
-                                type="text"
-                                placeholder="Your full name"
-                                required
-                            />
+                        <InputField
+                            label="Full name"
+                            type="text"
+                            placeholder="Your full name"
+                            value={formData.fullName}
+                            onChange={(e) => handleInputChange("fullName", e.target.value)}
+                            error={errors.fullName}
+                            required
+                        />
 
-                            <PasswordField
-                                name="password"
-                                label="Password"
-                                placeholder="Your password"
-                                required
-                            />
+                        <PasswordField
+                            label="Password"
+                            placeholder="Your password"
+                            value={formData.password}
+                            onChange={(e) => handleInputChange("password", e.target.value)}
+                            error={errors.password}
+                            required
+                            showRequirements={true}
+                        />
 
-                            <Button type="submit" buttonType="submit" fullWidth>
-                                Sign Up
-                            </Button>
-                        </div>
-                    </Form>
+                        <Button
+                            type="submit"
+                            buttonType="submit"
+                            fullWidth
+                            disabled={isLoading}
+                        >
+                            {isLoading ? "Signing up..." : "Sign Up"}
+                        </Button>
+                    </form>
 
                     <p className={styles.loginLink}>
                         Already have an account? <Link href="/login">Log in</Link>

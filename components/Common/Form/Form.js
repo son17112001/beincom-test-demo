@@ -99,11 +99,9 @@ function Item({ name = "", children, className, classNames = {}, style, ...props
                         {child}
                         {!!meta.errors.length && (
                             <div className={cls(styles.errors, classNames.errors)}>
-                                {React.Children.map(meta.errors, (error) => (
-                                    <div className={cls(styles.error, classNames.error)}>
-                                        {error}
-                                    </div>
-                                ))}
+                                <div className={cls(styles.error, classNames.error)}>
+                                    {meta.errors[0]}
+                                </div>
                             </div>
                         )}
                     </div>

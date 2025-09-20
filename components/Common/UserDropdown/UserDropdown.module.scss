@@ -1,0 +1,218 @@
+.dropdownContainer {
+    position: relative;
+    display: inline-block;
+}
+
+.userButton {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.8rem;
+    border-radius: var(--radius);
+    transition: var(--transition);
+
+    &:hover {
+        background: var(--gray-100);
+    }
+}
+
+.userAvatar {
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.chevron {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 28rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    z-index: 1000;
+    margin-top: 0.8rem;
+    overflow: hidden;
+    animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.6rem;
+    border-bottom: 1px solid var(--border-primary);
+    cursor: pointer;
+    transition: var(--transition);
+
+    &:hover {
+        background: var(--gray-50);
+    }
+}
+
+.userAvatarLarge {
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+.userDetails {
+    flex: 1;
+}
+
+.userName {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+}
+
+.userUsername {
+    font-size: 1.4rem;
+    color: var(--text-secondary);
+}
+
+.chevronRight {
+    color: var(--text-tertiary);
+    font-size: 1.6rem;
+    font-weight: 300;
+}
+
+.premiumBanner {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.6rem;
+    background: linear-gradient(135deg, var(--primary-color), #8B5CF6);
+    color: white;
+    margin: 0.8rem 1.6rem;
+    border-radius: var(--radius);
+}
+
+.premiumIcon {
+    font-size: 2rem;
+}
+
+.premiumText {
+    font-size: 1.4rem;
+    font-weight: 500;
+    flex: 1;
+}
+
+.missionsSection {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.6rem;
+    border-bottom: 1px solid var(--border-primary);
+    cursor: pointer;
+    transition: var(--transition);
+
+    &:hover {
+        background: var(--gray-50);
+    }
+}
+
+.missionsIcon {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.missionsContent {
+    flex: 1;
+}
+
+.missionsTitle {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+}
+
+.missionsStatus {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.missionsDot {
+    color: var(--error-color);
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.menuItems {
+    padding: 0.8rem 0;
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.2rem 1.6rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1.4rem;
+
+    &:hover {
+        background: var(--gray-50);
+    }
+
+    &:last-child {
+        color: var(--error-color);
+        font-weight: 500;
+    }
+}
+
+.menuIcon {
+    font-size: 1.8rem;
+    width: 2.4rem;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .dropdown {
+        width: 26rem;
+        right: -1rem;
+    }
+}

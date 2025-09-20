@@ -234,15 +234,25 @@
     gap: 1rem;
 }
 
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    width: 100%;
+}
+
 @media (max-width: 768px) {
     .loginPage {
         flex-direction: column;
 
         .rightPanel {
             padding: 2rem;
+            flex: 1;
+            width: 100%;
 
             .loginCard {
                 padding: 2rem;
+                max-width: 100%;
             }
         }
     }
