@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import Register from "../components/pages/Register";
+import Register from "@/components/Pages/Register";
 
 export default function RegisterPage() {
     return (
