@@ -1,0 +1,125 @@
+.leftPanel {
+    flex: 1;
+    background: linear-gradient(135deg, var(--primary-800) 0%, var(--primary-900) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.05"><rect width="60" height="60"/></g></svg>');
+        opacity: 0.1;
+    }
+
+    .logo {
+        font-size: 3.2rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 4rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .features {
+        position: relative;
+        z-index: 1;
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.6rem;
+            margin-bottom: 3rem;
+
+            .featureIcon {
+                width: 24px;
+                height: 24px;
+                background: white;
+                border-radius: var(--radius-full);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--primary-color);
+                font-weight: 600;
+                font-size: 1.2rem;
+                flex-shrink: 0;
+                margin-top: 0.2rem;
+            }
+
+            .featureContent {
+                .featureTitle {
+                    font-size: 1.8rem;
+                    font-weight: 600;
+                    color: white;
+                    margin: 0 0 0.8rem 0;
+                }
+
+                .featureDescription {
+                    font-size: 1.4rem;
+                    color: rgba(255, 255, 255, 0.8);
+                    margin: 0;
+                    line-height: 1.5;
+                }
+            }
+        }
+    }
+
+    .bicIcon {
+        position: absolute;
+        bottom: 2rem;
+        left: 2rem;
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, var(--primary-400), var(--primary-600));
+        border-radius: var(--radius-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 2.4rem;
+        box-shadow: var(--shadow-xl);
+        z-index: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .leftPanel {
+        padding: 2rem;
+        min-height: 40vh;
+
+        .logo {
+            font-size: 2.4rem;
+            margin-bottom: 2rem;
+        }
+
+        .features {
+            .feature {
+                margin-bottom: 2rem;
+
+                .featureContent {
+                    .featureTitle {
+                        font-size: 1.6rem;
+                    }
+
+                    .featureDescription {
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+        }
+
+        .bicIcon {
+            width: 60px;
+            height: 60px;
+            font-size: 1.8rem;
+        }
+    }
+}

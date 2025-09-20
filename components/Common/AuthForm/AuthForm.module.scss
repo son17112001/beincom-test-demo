@@ -5,6 +5,7 @@
     justify-content: center;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     padding: 2rem;
+    font-family: var(--font-family);
 }
 
 .formContainer {
@@ -17,15 +18,15 @@
 }
 
 .title {
-    font-size: 2.8rem;
-    font-weight: 700;
+    font-size: var(--text-3xl);
+    font-weight: var(--font-weight-bold);
     color: var(--text-primary);
     text-align: center;
     margin-bottom: 0.8rem;
 }
 
 .subtitle {
-    font-size: 1.6rem;
+    font-size: var(--text-base);
     color: var(--text-secondary);
     text-align: center;
     margin-bottom: 3rem;
@@ -44,17 +45,18 @@
 }
 
 .label {
-    font-size: 1.4rem;
-    font-weight: 600;
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
     color: var(--text-primary);
 }
 
 .input {
     padding: 1.2rem 1.6rem;
     border: 2px solid var(--border-primary);
-    border-radius: 0.8rem;
-    font-size: 1.6rem;
-    transition: all 0.3s ease;
+    border-radius: var(--radius);
+    font-size: var(--text-base);
+    font-family: var(--font-family);
+    transition: var(--transition);
     background: white;
 
     &:focus {
@@ -75,15 +77,15 @@
 
 .errorText {
     color: var(--error-color);
-    font-size: 1.2rem;
+    font-size: var(--text-xs);
     margin-top: 0.4rem;
 }
 
 .submitButton {
     margin-top: 1rem;
     height: 5rem;
-    font-size: 1.6rem;
-    font-weight: 600;
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-semibold);
 }
 
 .footer {
@@ -93,7 +95,7 @@
     border-top: 1px solid var(--border-primary);
 
     p {
-        font-size: 1.4rem;
+        font-size: var(--text-sm);
         color: var(--text-secondary);
     }
 }
@@ -101,8 +103,8 @@
 .link {
     color: var(--primary-color);
     text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
+    font-weight: var(--font-weight-semibold);
+    transition: var(--transition);
 
     &:hover {
         color: var(--blue-active);
@@ -118,13 +120,13 @@
     border-left: 4px solid var(--primary-color);
 
     .demoTitle {
-        font-weight: 600;
+        font-weight: var(--font-weight-semibold);
         color: var(--text-primary);
         margin-bottom: 0.8rem;
     }
 
     p {
-        font-size: 1.4rem;
+        font-size: var(--text-sm);
         color: var(--text-secondary);
         margin: 0.4rem 0;
     }
@@ -141,10 +143,10 @@
     }
 
     .title {
-        font-size: 2.4rem;
+        font-size: var(--text-2xl);
     }
 
     .subtitle {
-        font-size: 1.4rem;
+        font-size: var(--text-sm);
     }
 }

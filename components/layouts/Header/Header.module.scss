@@ -1,10 +1,12 @@
 .wrapper {
-    background: white;
+    background: var(--bg-primary);
     border-bottom: 1px solid var(--border-primary);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.95);
+    font-family: var(--font-family);
 }
 
 .container {
@@ -18,29 +20,119 @@
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .logoIcon {
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        border-radius: var(--radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 1.4rem;
+    }
+
     .logoLink {
-        font-size: 2.4rem;
+        font-size: 2rem;
         font-weight: 700;
         color: var(--primary-color);
         text-decoration: none;
-        transition: color 0.3s ease;
+        transition: var(--transition);
 
         &:hover {
-            color: var(--blue-active);
+            color: var(--primary-dark);
         }
+    }
+}
+
+.searchBar {
+    flex: 1;
+    max-width: 400px;
+    margin: 0 2rem;
+    position: relative;
+
+    .searchInput {
+        width: 100%;
+        padding: 0.8rem 1.2rem 0.8rem 4rem;
+        border: 1px solid var(--border-primary);
+        border-radius: var(--radius-full);
+        font-size: 1.4rem;
+        background: var(--bg-secondary);
+        transition: var(--transition);
+
+        &:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: var(--bg-primary);
+            box-shadow: 0 0 0 3px var(--primary-100);
+        }
+
+        &::placeholder {
+            color: var(--text-tertiary);
+        }
+    }
+
+    .searchIcon {
+        position: absolute;
+        left: 1.2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-tertiary);
+        font-size: 1.6rem;
     }
 }
 
 .nav {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
+
+    .navItem {
+        padding: 0.8rem;
+        border-radius: var(--radius);
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: var(--transition);
+        position: relative;
+
+        &:hover {
+            color: var(--primary-color);
+            background: var(--primary-50);
+        }
+
+        &.active {
+            color: var(--primary-color);
+            background: var(--primary-100);
+        }
+
+        .badge {
+            position: absolute;
+            top: 0.4rem;
+            right: 0.4rem;
+            background: var(--error-color);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: var(--radius-full);
+            min-width: 1.8rem;
+            height: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
 }
 
 .userSection {
     display: flex;
     align-items: center;
-    gap: 1.6rem;
+    gap: 1.5rem;
 
     .welcome {
         font-size: 1.4rem;
@@ -48,6 +140,42 @@
 
         strong {
             color: var(--text-primary);
+            font-weight: 600;
+        }
+    }
+
+    .walletBtn {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0.8rem 1.6rem;
+        border-radius: var(--radius);
+        font-size: 1.4rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+
+        &:hover {
+            background: var(--primary-dark);
+        }
+    }
+
+    .userAvatar {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-full);
+        background: var(--primary-color);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 1.6rem;
+        cursor: pointer;
+        transition: var(--transition);
+
+        &:hover {
+            transform: scale(1.05);
         }
     }
 
@@ -60,54 +188,67 @@
 .authSection {
     display: flex;
     align-items: center;
-    gap: 1.6rem;
+    gap: 1.5rem;
 
     .authLink {
         font-size: 1.4rem;
         color: var(--text-secondary);
         text-decoration: none;
         padding: 0.8rem 1.6rem;
-        border-radius: 0.6rem;
-        transition: all 0.3s ease;
+        border-radius: var(--radius);
+        transition: var(--transition);
 
         &:hover {
             color: var(--primary-color);
-            background: var(--blue-bg);
+            background: var(--primary-50);
         }
     }
 }
 
-// Responsive
+@media (max-width: 1024px) {
+    .searchBar {
+        max-width: 300px;
+        margin: 0 1rem;
+    }
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 0 1rem;
     }
 
+    .searchBar {
+        display: none;
+    }
+
     .logo {
         .logoLink {
-            font-size: 2rem;
+            font-size: 1.8rem;
+        }
+    }
+
+    .nav {
+        gap: 0.5rem;
+
+        .navItem {
+            padding: 0.6rem;
         }
     }
 
     .userSection {
-        gap: 1rem;
-
         .welcome {
-            font-size: 1.2rem;
+            display: none;
         }
 
-        .logoutBtn {
-            padding: 0.6rem 1.2rem;
-            font-size: 1.2rem;
+        .walletBtn {
+            display: none;
         }
     }
 
     .authSection {
-        gap: 1rem;
-
         .authLink {
-            font-size: 1.2rem;
             padding: 0.6rem 1.2rem;
+            font-size: 1.2rem;
         }
     }
 }
