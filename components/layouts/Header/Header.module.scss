@@ -1,0 +1,113 @@
+.wrapper {
+    background: white;
+    border-bottom: 1px solid var(--border-primary);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+}
+
+.logo {
+    .logoLink {
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: var(--blue-active);
+        }
+    }
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.userSection {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+
+    .welcome {
+        font-size: 1.4rem;
+        color: var(--text-secondary);
+
+        strong {
+            color: var(--text-primary);
+        }
+    }
+
+    .logoutBtn {
+        padding: 0.8rem 1.6rem;
+        font-size: 1.4rem;
+    }
+}
+
+.authSection {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+
+    .authLink {
+        font-size: 1.4rem;
+        color: var(--text-secondary);
+        text-decoration: none;
+        padding: 0.8rem 1.6rem;
+        border-radius: 0.6rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+            color: var(--primary-color);
+            background: var(--blue-bg);
+        }
+    }
+}
+
+// Responsive
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .logo {
+        .logoLink {
+            font-size: 2rem;
+        }
+    }
+
+    .userSection {
+        gap: 1rem;
+
+        .welcome {
+            font-size: 1.2rem;
+        }
+
+        .logoutBtn {
+            padding: 0.6rem 1.2rem;
+            font-size: 1.2rem;
+        }
+    }
+
+    .authSection {
+        gap: 1rem;
+
+        .authLink {
+            font-size: 1.2rem;
+            padding: 0.6rem 1.2rem;
+        }
+    }
+}

@@ -6,15 +6,14 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import NProgress from "nprogress";
 import { Toaster } from "sonner";
 
-// Import locales
 import en from "../locales/en.json";
 import vi from "../locales/vi.json";
 
+import { AuthProvider } from "../hooks/useAuth";
+
 import "nprogress/nprogress.css";
-// Import global styles
 import "../styles/globals.scss";
 
-// Configure NProgress
 NProgress.configure({ showSpinner: false });
 
 const messages = {
@@ -22,11 +21,10 @@ const messages = {
     vi,
 };
 
-// Create a client
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
-            staleTime: 60 * 1000, // 1 minute
+            staleTime: 60 * 1000,
             retry: 1,
         },
     },
@@ -53,10 +51,12 @@ function MyApp({ Component, pageProps }) {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <IntlProvider messages={messages[locale]} locale={locale}>
-                <Component {...pageProps} />
-                <Toaster richColors closeButton position="top-center" />
-            </IntlProvider>
+            <AuthProvider>
+                <IntlProvider messages={messages[locale]} locale={locale}>
+                    <Component {...pageProps} />
+                    <Toaster richColors closeButton position="top-center" />
+                </IntlProvider>
+            </AuthProvider>
             <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
     );
