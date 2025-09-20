@@ -1,0 +1,52 @@
+{
+  "name": "nextjs-admin-template",
+  "version": "1.0.0",
+  "description": "Next.js Admin Dashboard Template with modern UI components",
+  "author": "Your Name",
+  "license": "MIT",
+  "keywords": [
+    "nextjs",
+    "react",
+    "admin",
+    "dashboard",
+    "template",
+    "scss",
+    "components"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/nextjs-admin-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/nextjs-admin-template/issues"
+  },
+  "homepage": "https://github.com/yourusername/nextjs-admin-template#readme",
+  "engines": {
+    "node": ">=18.17.0",
+    "npm": ">=9.0.0"
+  },
+  "template": {
+    "variables": {
+      "projectName": {
+        "type": "string",
+        "description": "Project name",
+        "default": "my-nextjs-app"
+      },
+      "projectDescription": {
+        "type": "string",
+        "description": "Project description",
+        "default": "A Next.js admin dashboard application"
+      },
+      "authorName": {
+        "type": "string",
+        "description": "Author name",
+        "default": "Your Name"
+      },
+      "authorEmail": {
+        "type": "string",
+        "description": "Author email",
+        "default": "your.email@example.com"
+      }
+    }
+  }
+}
