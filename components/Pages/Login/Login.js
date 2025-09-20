@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import PasswordInput, { PasswordField } from "@/components/Common/PasswordInput";
+
 import { useAuth } from "../../../hooks/useAuth";
 import AuthLeftPanel from "../../Common/AuthLeftPanel";
+import Button from "../../Common/Button";
+import { Form, useForm } from "../../Common/Form";
+import { InputField } from "../../Common/Input";
 
 import styles from "./Login.module.scss";
 
 const Login = () => {
     const router = useRouter();
     const { isAuthenticated, loading, login } = useAuth();
-    const [ formData, setFormData ] = useState({
-        email: "",
-        password: "",
-    });
-    const [ errors, setErrors ] = useState({});
-    const [ showPassword, setShowPassword ] = useState(false);
+    const [ form ] = useForm();
 
     useEffect(() => {
         if (!loading && isAuthenticated) {
@@ -23,26 +23,10 @@ const Login = () => {
         }
     }, [ isAuthenticated, loading, router ]);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
-        setErrors((prev) => ({ ...prev, [name]: "" }));
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        if (!formData.email || !formData.password) {
-            setErrors({
-                email: !formData.email ? "Email is required" : "",
-                password: !formData.password ? "Password is required" : "",
-            });
-            return;
-        }
-
+    const handleSubmit = async (values) => {
         const result = await login({
-            email: formData.email,
-            password: formData.password,
+            email: values.email,
+            password: values.password,
         });
 
         if (result.success) {
@@ -99,54 +83,33 @@ const Login = () => {
                         <span>or</span>
                     </div>
 
-                    <form onSubmit={handleSubmit}>
+                    <Form
+                        form={form}
+                        initialValues={{
+                            email: "",
+                            password: "",
+                        }}
+                        onFinish={handleSubmit}
+                    >
                         <div className={styles.formGroup}>
-                            <label className={styles.label}>Email</label>
-                            <input
-                                type="email"
+                            <InputField
                                 name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                className={styles.input}
+                                label="Email"
+                                type="email"
                                 placeholder="Your email"
+                                required
                             />
-                            {errors.email && (
-                                <span style={{ color: "var(--error-color)", fontSize: "1.2rem" }}>
-                                    {errors.email}
-                                </span>
-                            )}
+                            <PasswordField
+                                name="password"
+                                label="Password"
+                                placeholder="Your password"
+                                required
+                            />
+                            <Button type="submit" buttonType="submit" fullWidth>
+                                Log In
+                            </Button>
                         </div>
-
-                        <div className={styles.formGroup}>
-                            <label className={styles.label}>Password</label>
-                            <div className={styles.passwordInput}>
-                                <input
-                                    type={showPassword ? "text" : "password"}
-                                    name="password"
-                                    value={formData.password}
-                                    onChange={handleChange}
-                                    className={styles.input}
-                                    placeholder="Your password"
-                                />
-                                <button
-                                    type="button"
-                                    className={styles.toggleBtn}
-                                    onClick={() => setShowPassword(!showPassword)}
-                                >
-                                    {showPassword ? "👁️" : "👁️‍🗨️"}
-                                </button>
-                            </div>
-                            {errors.password && (
-                                <span style={{ color: "var(--error-color)", fontSize: "1.2rem" }}>
-                                    {errors.password}
-                                </span>
-                            )}
-                        </div>
-
-                        <button type="submit" className={styles.loginBtn}>
-                            Log In
-                        </button>
-                    </form>
+                    </Form>
 
                     <Link href="/forgot-password" className={styles.forgotPassword}>
                         Forgot password?

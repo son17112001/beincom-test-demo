@@ -98,3 +98,6 @@ export const MESSAGES = {
         LOGOUT: "Are you sure you want to logout?",
     },
 };
+
+// Re-export errorCode
+export { errorCodes } from './errorCode';

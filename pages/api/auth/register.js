@@ -6,17 +6,11 @@ export default async function handler(req, res) {
         return res.status(405).json({ message: "Method not allowed" });
     }
 
-    const { name, email, password, confirmPassword } = req.body;
+    const { email, username, fullName, password } = req.body;
 
-    if (!name || !email || !password || !confirmPassword) {
+    if (!email || !username || !fullName || !password) {
         return res.status(400).json({
             message: "Tất cả các trường là bắt buộc",
-        });
-    }
-
-    if (password !== confirmPassword) {
-        return res.status(400).json({
-            message: "Mật khẩu xác nhận không khớp",
         });
     }
 
@@ -43,7 +37,8 @@ export default async function handler(req, res) {
         const newUser = addUser({
             email,
             password,
-            name,
+            name: fullName,
+            username,
             role: "user",
         });
 
