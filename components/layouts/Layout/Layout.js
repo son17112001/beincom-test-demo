@@ -11,7 +11,7 @@ import styles from "./Layout.module.scss";
 const messages = defineMessages({
     pageTitle: {
         id: "common.pageTitle",
-        defaultMessage: "Beincome test",
+        defaultMessage: "Social Community Platform",
     },
 });
 

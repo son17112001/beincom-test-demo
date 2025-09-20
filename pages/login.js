@@ -1,45 +1,17 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import Head from 'next/head';
+import Head from "next/head";
 
-import AuthForm from '../components/Common/AuthForm';
-import { useAuth } from '../hooks/useAuth';
+import Login from "@/components/pages/Login/Login";
 
-export default function Login() {
-    const router = useRouter();
-    const { isAuthenticated, loading } = useAuth();
+import Layout from "../components/layouts/Layout/Layout";
 
-    useEffect(() => {
-        if (!loading && isAuthenticated) {
-            router.push('/');
-        }
-    }, [isAuthenticated, loading, router]);
-
-    if (loading) {
-        return (
-            <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '100vh',
-                fontSize: '1.6rem'
-            }}>
-                Đang kiểm tra xác thực...
-            </div>
-        );
-    }
-
-    if (isAuthenticated) {
-        return null;
-    }
-
+export default function LoginPage() {
     return (
-        <>
+        <Layout title="Đăng nhập - Social Community Platform">
             <Head>
-                <title>Đăng nhập - Next.js Admin Template</title>
-                <meta name="description" content="Đăng nhập vào hệ thống quản trị" />
+                <title>Đăng nhập - Social Community Platform</title>
+                <meta name="description" content="Đăng nhập vào Social Community Platform" />
             </Head>
-            <AuthForm type="login" />
-        </>
+            <Login />
+        </Layout>
     );
 }

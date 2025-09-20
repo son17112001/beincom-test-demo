@@ -15,7 +15,7 @@ const Homepage = () => {
         <div className={styles.homepage}>
             <div className={styles.container}>
                 <h1 className={styles.title}>
-                    Chào mừng đến với Next.js Admin Template
+                    Chào mừng đến với Social Community Platform
                 </h1>
 
                 {isAuthenticated ? (
@@ -41,7 +41,7 @@ const Homepage = () => {
                 ) : (
                     <div className={styles.unauthenticatedContent}>
                         <p className={styles.description}>
-                            Vui lòng đăng nhập để truy cập các tính năng của hệ thống.
+                            Vui lòng đăng nhập để truy cập các tính năng của Social Community Platform.
                         </p>
                         <div className={styles.actions}>
                             <Button

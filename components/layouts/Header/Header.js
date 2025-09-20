@@ -18,7 +18,7 @@ function Header() {
             <div className={styles.container}>
                 <div className={styles.logo}>
                     <Link href="/" className={styles.logoLink}>
-                        Next.js Admin
+                        Social Community Platform
                     </Link>
                 </div>
 

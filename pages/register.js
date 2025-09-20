@@ -1,45 +1,16 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import Head from 'next/head';
+import Head from "next/head";
 
-import AuthForm from '../components/Common/AuthForm';
-import { useAuth } from '../hooks/useAuth';
+import Layout from "../components/layouts/Layout/Layout";
+import Register from "../components/pages/Register";
 
-export default function Register() {
-    const router = useRouter();
-    const { isAuthenticated, loading } = useAuth();
-
-    useEffect(() => {
-        if (!loading && isAuthenticated) {
-            router.push('/');
-        }
-    }, [isAuthenticated, loading, router]);
-
-    if (loading) {
-        return (
-            <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '100vh',
-                fontSize: '1.6rem'
-            }}>
-                Đang kiểm tra xác thực...
-            </div>
-        );
-    }
-
-    if (isAuthenticated) {
-        return null;
-    }
-
+export default function RegisterPage() {
     return (
-        <>
+        <Layout title="Đăng ký - Social Community Platform">
             <Head>
-                <title>Đăng ký - Next.js Admin Template</title>
-                <meta name="description" content="Đăng ký tài khoản mới" />
+                <title>Đăng ký - Social Community Platform</title>
+                <meta name="description" content="Đăng ký tài khoản mới trên Social Community Platform" />
             </Head>
-            <AuthForm type="register" />
-        </>
+            <Register />
+        </Layout>
     );
 }

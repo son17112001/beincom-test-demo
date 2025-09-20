@@ -9,17 +9,14 @@ export default function Home() {
     const intl = useIntl();
 
     return (
-        <>
+        <Layout title="Social Community Platform">
             <Head>
-                <title>Next.js Admin Template</title>
-                <meta name="description" content="Next.js Admin Dashboard Template" />
+                <title>Social Community Platform</title>
+                <meta name="description" content="Social Community Platform - Connect, Share, and Engage" />
             </Head>
-
-            <Layout>
-                <Container>
-                    <Homepage />
-                </Container>
-            </Layout>
-        </>
+            <Container>
+                <Homepage />
+            </Container>
+        </Layout>
     );
 }
