@@ -1,15 +1,15 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import classNames from "classnames";
 
 import { useAuth } from "../../../hooks/useAuth";
+
 import styles from "./UserDropdown.module.scss";
 
 const UserDropdown = () => {
     const router = useRouter();
     const { user, logout } = useAuth();
-    const [isOpen, setIsOpen] = useState(false);
+    const [ isOpen, setIsOpen ] = useState(false);
     const dropdownRef = useRef(null);
 
     useEffect(() => {

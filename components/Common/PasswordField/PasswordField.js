@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import classNames from "classnames";
+
 import PasswordRequirements from "../PasswordRequirements";
+
 import styles from "./PasswordField.module.scss";
 
 const PasswordField = ({
@@ -14,9 +16,9 @@ const PasswordField = ({
     showRequirements = false,
     ...props
 }) => {
-    const [showPassword, setShowPassword] = useState(false);
-    const [isFocused, setIsFocused] = useState(false);
-    const [showRequirementsState, setShowRequirementsState] = useState(false);
+    const [ showPassword, setShowPassword ] = useState(false);
+    const [ isFocused, setIsFocused ] = useState(false);
+    const [ showRequirementsState, setShowRequirementsState ] = useState(false);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);

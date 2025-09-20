@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useAuth } from '../../../hooks/useAuth';
 import { toast } from 'sonner';
+
+import { useAuth } from '../../../hooks/useAuth';
 
 const ProtectedRoute = ({ children, fallback = null }) => {
     const { isAuthenticated, loading } = useAuth();
@@ -12,7 +13,7 @@ const ProtectedRoute = ({ children, fallback = null }) => {
             toast.error('Vui lòng đăng nhập để truy cập trang này');
             router.push('/login');
         }
-    }, [isAuthenticated, loading, router]);
+    }, [ isAuthenticated, loading, router ]);
 
     // Show loading spinner while checking authentication
     if (loading) {
@@ -22,7 +23,7 @@ const ProtectedRoute = ({ children, fallback = null }) => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 height: '100vh',
-                fontSize: '1.6rem'
+                fontSize: '1.6rem',
             }}>
                 Đang kiểm tra xác thực...
             </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styles from './AuthLeftPanel.module.scss';
 
 const AuthLeftPanel = () => {
@@ -20,7 +21,7 @@ const AuthLeftPanel = () => {
                     <div className={styles.featureContent}>
                         <h3 className={styles.featureTitle}>Always Reach</h3>
                         <p className={styles.featureDescription}>
-                            Contents created by communities are always distributed to all members' newsfeeds.
+                            Contents created by communities are always distributed to all members&apos; newsfeeds.
                         </p>
                     </div>
                 </div>

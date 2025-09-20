@@ -6,10 +6,9 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import NProgress from "nprogress";
 import { Toaster } from "sonner";
 
+import { AuthProvider } from "../hooks/useAuth";
 import en from "../locales/en.json";
 import vi from "../locales/vi.json";
-
-import { AuthProvider } from "../hooks/useAuth";
 
 import "nprogress/nprogress.css";
 import "../styles/globals.scss";

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import classNames from 'classnames';
 
-import Button from '../Button';
 import { useAuth } from '../../../hooks/useAuth';
+import Button from '../Button';
 
 import styles from './AuthForm.module.scss';
 
@@ -14,13 +14,13 @@ const AuthForm = ({ type = 'login' }) => {
     const router = useRouter();
     const { login, register, loading } = useAuth();
 
-    const [formData, setFormData] = useState({
+    const [ formData, setFormData ] = useState({
         name: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
     });
-    const [errors, setErrors] = useState({});
+    const [ errors, setErrors ] = useState({});
 
     const isLogin = type === 'login';
 
@@ -28,13 +28,13 @@ const AuthForm = ({ type = 'login' }) => {
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
-            [name]: value
+            [name]: value,
         }));
 
         if (errors[name]) {
             setErrors(prev => ({
                 ...prev,
-                [name]: ''
+                [name]: '',
             }));
         }
     };
@@ -80,7 +80,7 @@ const AuthForm = ({ type = 'login' }) => {
         if (isLogin) {
             const result = await login({
                 email: formData.email,
-                password: formData.password
+                password: formData.password,
             });
 
             if (result.success) {
@@ -91,7 +91,7 @@ const AuthForm = ({ type = 'login' }) => {
                 name: formData.name,
                 email: formData.email,
                 password: formData.password,
-                confirmPassword: formData.confirmPassword
+                confirmPassword: formData.confirmPassword,
             });
 
             if (result.success) {
@@ -127,7 +127,7 @@ const AuthForm = ({ type = 'login' }) => {
                                 value={formData.name}
                                 onChange={handleChange}
                                 className={classNames(styles.input, {
-                                    [styles.error]: errors.name
+                                    [styles.error]: errors.name,
                                 })}
                                 placeholder="Nhập tên đầy đủ của bạn"
                             />
@@ -148,7 +148,7 @@ const AuthForm = ({ type = 'login' }) => {
                             value={formData.email}
                             onChange={handleChange}
                             className={classNames(styles.input, {
-                                [styles.error]: errors.email
+                                [styles.error]: errors.email,
                             })}
                             placeholder="Nhập email của bạn"
                         />
@@ -168,7 +168,7 @@ const AuthForm = ({ type = 'login' }) => {
                             value={formData.password}
                             onChange={handleChange}
                             className={classNames(styles.input, {
-                                [styles.error]: errors.password
+                                [styles.error]: errors.password,
                             })}
                             placeholder="Nhập mật khẩu của bạn"
                         />
@@ -189,7 +189,7 @@ const AuthForm = ({ type = 'login' }) => {
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
                                 className={classNames(styles.input, {
-                                    [styles.error]: errors.confirmPassword
+                                    [styles.error]: errors.confirmPassword,
                                 })}
                                 placeholder="Nhập lại mật khẩu"
                             />

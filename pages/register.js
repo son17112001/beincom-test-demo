@@ -1,4 +1,5 @@
 import Head from "next/head";
+
 import Register from "../components/pages/Register";
 
 export default function RegisterPage() {

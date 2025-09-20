@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { useAuth } from '../../../hooks/useAuth';
 import Button from '../Button';
 
@@ -6,9 +7,9 @@ import styles from './Post.module.scss';
 
 const Post = ({ post, onLike, onComment, onShare }) => {
     const { user } = useAuth();
-    const [isLiked, setIsLiked] = useState(false);
-    const [likeCount, setLikeCount] = useState(post.likes || 0);
-    const [showComments, setShowComments] = useState(false);
+    const [ isLiked, setIsLiked ] = useState(false);
+    const [ likeCount, setLikeCount ] = useState(post.likes || 0);
+    const [ showComments, setShowComments ] = useState(false);
 
     const handleLike = () => {
         const newLiked = !isLiked;
