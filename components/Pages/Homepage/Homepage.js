@@ -1,18 +1,18 @@
 import React, { useMemo, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { useAuth } from "../../../hooks/useAuth";
 import { useInfinitePosts } from "../../../hooks/useInfinitePosts";
 import Button from "../../Common/Button";
 import PostCard from "../../Common/PostCard";
-import Sidebar from "../../Common/Sidebar";
+import SearchAndFilter from "../../Common/SearchAndFilter";
 
 import styles from "./Homepage.module.scss";
 
 const Homepage = () => {
-    const { user, isAuthenticated } = useAuth();
     const [ searchQuery, setSearchQuery ] = useState("");
     const [ debouncedSearchQuery, setDebouncedSearchQuery ] = useState("");
+    const [ sortBy, setSortBy ] = useState("newest");
+    const [ filterBy, setFilterBy ] = useState("all");
 
     // Debounce search query
     React.useEffect(() => {
@@ -37,10 +37,56 @@ const Homepage = () => {
         searchQuery: debouncedSearchQuery,
     });
 
-    // Flatten all posts from all pages
+    // Flatten all posts from all pages and apply sorting/filtering
     const allPosts = useMemo(() => {
-        return data?.pages?.flatMap((page) => page.posts) || [];
-    }, [ data ]);
+        let posts = data?.pages?.flatMap((page) => page.posts) || [];
+
+        // Apply filtering
+        if (filterBy !== 'all') {
+            switch (filterBy) {
+                case 'recent':
+                    // Filter posts from last 7 days (simulated)
+                    posts = posts.filter((_, index) => index < 20); // Simulate recent posts
+                    break;
+                case 'popular':
+                    // Filter posts with many comments (simulated)
+                    posts = posts.filter((_, index) => index % 3 === 0); // Simulate popular posts
+                    break;
+                case 'trending':
+                    // Filter posts with moderate comments (simulated)
+                    posts = posts.filter((_, index) => index % 2 === 0); // Simulate trending posts
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        // Apply sorting
+        switch (sortBy) {
+            case 'newest':
+                posts = [ ...posts ].sort((a, b) => b.id - a.id);
+                break;
+            case 'oldest':
+                posts = [ ...posts ].sort((a, b) => a.id - b.id);
+                break;
+            case 'most_comments':
+                posts = [ ...posts ].sort((a, b) => (b.commentCount || 0) - (a.commentCount || 0));
+                break;
+            case 'least_comments':
+                posts = [ ...posts ].sort((a, b) => (a.commentCount || 0) - (b.commentCount || 0));
+                break;
+            case 'title_asc':
+                posts = [ ...posts ].sort((a, b) => a.title.localeCompare(b.title));
+                break;
+            case 'title_desc':
+                posts = [ ...posts ].sort((a, b) => b.title.localeCompare(a.title));
+                break;
+            default:
+                break;
+        }
+
+        return posts;
+    }, [ data, sortBy, filterBy ]);
 
     const handleSearch = (e) => {
         setSearchQuery(e.target.value);
@@ -52,6 +98,14 @@ const Homepage = () => {
 
     const handleRefresh = () => {
         refetch();
+    };
+
+    const handleSortChange = (newSortBy) => {
+        setSortBy(newSortBy);
+    };
+
+    const handleFilterChange = (newFilterBy) => {
+        setFilterBy(newFilterBy);
     };
 
     return (
@@ -78,6 +132,17 @@ const Homepage = () => {
                     </div>
 
                     <div className={styles.feed}>
+                        <SearchAndFilter
+                            searchQuery={searchQuery}
+                            onSearchChange={handleSearch}
+                            onClearSearch={handleClearSearch}
+                            onSortChange={handleSortChange}
+                            onFilterChange={handleFilterChange}
+                            sortBy={sortBy}
+                            filterBy={filterBy}
+                            totalResults={allPosts.length}
+                        />
+
                         {isLoading ? (
                             <div className={styles.loadingContainer}>
                                 <div className={styles.loadingSpinner} />
@@ -89,15 +154,7 @@ const Homepage = () => {
                                 <p>{error?.message || "Something went wrong"}</p>
                                 <Button onClick={handleRefresh}>Try Again</Button>
                             </div>
-                        ) : (
-                            <div className={styles.postsStats}>
-                                <p>
-                                    Showing {allPosts.length} posts
-                                    {debouncedSearchQuery &&
-                                        ` for &quot;${debouncedSearchQuery}&quot;`}
-                                </p>
-                            </div>
-                        )}
+                        ) : null}
 
                         <InfiniteScroll
                             dataLength={allPosts.length}

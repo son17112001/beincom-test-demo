@@ -504,12 +504,12 @@
     .homepage {
         .mainContent {
             grid-template-columns: 1fr;
-            gap: 0;
+            gap: 20px;
 
-            .sidebar {
+            .leftSidebar {
                 position: static;
                 order: -1;
-                margin-bottom: 20px;
+                margin-bottom: 0;
             }
         }
     }
@@ -527,30 +527,79 @@
             font-size: 2rem;
         }
 
-        .feed {
-            .contentTabs {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 12px;
+        .mainContent {
+            .leftSidebar {
+                .communitiesCard {
+                    padding: 16px;
+                    margin-bottom: 16px;
 
-                .searchContainer {
-                    max-width: none;
-                    flex-direction: column;
-                    gap: 8px;
+                    .cardHeader {
+                        h3 {
+                            font-size: 1.4rem;
+                        }
+                    }
 
-                    .searchInput {
-                        width: 100%;
+                    .communityItem {
+                        padding: 10px;
+
+                        .communityIcon {
+                            width: 28px;
+                            height: 28px;
+                            font-size: 1rem;
+                        }
+
+                        .communityInfo {
+                            .communityName {
+                                font-size: 1.3rem;
+                            }
+                        }
                     }
                 }
             }
+        }
 
-            .createPost {
-                padding: 16px;
+        .feed {
+            .postsStats {
+                padding: 10px 12px;
+                margin-bottom: 12px;
 
-                .createPostActions {
-                    flex-wrap: wrap;
-                    gap: 8px;
+                p {
+                    font-size: 1.3rem;
                 }
+            }
+
+            .loadingContainer,
+            .errorContainer {
+                padding: 30px 15px;
+
+                h3 {
+                    font-size: 1.6rem;
+                }
+
+                p {
+                    font-size: 1.4rem;
+                }
+            }
+
+            .loadingMore {
+                padding: 15px;
+
+                p {
+                    font-size: 1.3rem;
+                }
+            }
+
+            .endMessage {
+                padding: 15px;
+                margin: 15px 0;
+
+                p {
+                    font-size: 1.4rem;
+                }
+            }
+
+            .posts {
+                gap: 15px;
             }
         }
 
@@ -561,6 +610,97 @@
             .actions {
                 flex-direction: column;
                 align-items: center;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .homepage {
+        padding: 8px 0;
+
+        .container {
+            padding: 0 8px;
+        }
+
+        .mainContent {
+            .leftSidebar {
+                .communitiesCard {
+                    padding: 12px;
+
+                    .cardHeader {
+                        h3 {
+                            font-size: 1.3rem;
+                        }
+
+                        .headerActions {
+                            gap: 6px;
+
+                            span {
+                                width: 28px;
+                                height: 28px;
+                                font-size: 1.2rem;
+                            }
+                        }
+                    }
+
+                    .communityItem {
+                        padding: 8px;
+                        gap: 10px;
+
+                        .communityIcon {
+                            width: 24px;
+                            height: 24px;
+                            font-size: 0.9rem;
+                        }
+
+                        .communityInfo {
+                            .communityName {
+                                font-size: 1.2rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .feed {
+            .postsStats {
+                padding: 8px 10px;
+
+                p {
+                    font-size: 1.2rem;
+                }
+            }
+
+            .loadingContainer,
+            .errorContainer {
+                padding: 20px 10px;
+
+                h3 {
+                    font-size: 1.4rem;
+                }
+
+                p {
+                    font-size: 1.3rem;
+                }
+            }
+
+            .loadingMore {
+                padding: 12px;
+
+                p {
+                    font-size: 1.2rem;
+                }
+            }
+
+            .endMessage {
+                padding: 12px;
+                margin: 12px 0;
+
+                p {
+                    font-size: 1.3rem;
+                }
             }
         }
     }

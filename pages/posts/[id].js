@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 import Button from "../../components/Common/Button";
+import CommentForm from "../../components/Common/CommentForm";
 import Container from "../../components/Common/Container";
 import { usePost, usePostComments, useUser } from "../../hooks/useInfinitePosts";
 
@@ -12,10 +13,18 @@ import styles from "../../components/Pages/PostDetail/PostDetail.module.scss";
 const PostDetail = () => {
     const router = useRouter();
     const { id } = router.query;
+    const [ localComments, setLocalComments ] = useState([]);
 
     const { data: post, isLoading: postLoading, isError: postError } = usePost(id);
     const { data: comments, isLoading: commentsLoading } = usePostComments(id);
     const { data: user, isLoading: userLoading } = useUser(post?.userId);
+
+    // Combine API comments with locally added comments
+    const allComments = [ ...(comments || []), ...localComments ];
+
+    const handleCommentAdded = (newComment) => {
+        setLocalComments(prev => [ newComment, ...prev ]);
+    };
 
     if (postLoading) {
         return (
@@ -89,7 +98,9 @@ const PostDetail = () => {
                     </article>
 
                     <section className={styles.commentsSection}>
-                        <h2 className={styles.commentsTitle}>Comments ({comments?.length || 0})</h2>
+                        <h2 className={styles.commentsTitle}>Comments ({allComments.length})</h2>
+
+                        <CommentForm postId={id} onCommentAdded={handleCommentAdded} />
 
                         {commentsLoading ? (
                             <div className={styles.commentsLoading}>
@@ -98,7 +109,7 @@ const PostDetail = () => {
                             </div>
                         ) : (
                             <div className={styles.commentsList}>
-                                {comments?.map((comment) => (
+                                {allComments.map((comment) => (
                                     <div key={comment.id} className={styles.comment}>
                                         <div className={styles.commentHeader}>
                                             <h4 className={styles.commentAuthor}>{comment.name}</h4>

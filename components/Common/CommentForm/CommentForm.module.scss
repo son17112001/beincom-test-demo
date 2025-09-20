@@ -1,0 +1,232 @@
+@import '../../../styles/mixins';
+
+.commentForm {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e1e5e9;
+
+    @include mobile {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+.formHeader {
+    margin-bottom: 16px;
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .userName {
+        font-size: 16px;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+}
+
+.formBody {
+    margin-bottom: 16px;
+
+    .commentInput {
+        width: 100%;
+        min-height: 100px;
+        padding: 12px 16px;
+        border: 1px solid #e1e5e9;
+        border-radius: 8px;
+        font-size: 14px;
+        font-family: inherit;
+        resize: vertical;
+        transition: border-color 0.2s ease;
+
+        &:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        &::placeholder {
+            color: #95a5a6;
+        }
+    }
+
+    .errorMessage {
+        color: #e74c3c;
+        font-size: 14px;
+        margin-top: 8px;
+        padding: 8px 12px;
+        background: #fdf2f2;
+        border: 1px solid #fecaca;
+        border-radius: 6px;
+    }
+}
+
+.formActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+
+    @include mobile {
+        flex-direction: column;
+    }
+}
+
+.loginPrompt {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 24px;
+
+    p {
+        margin: 0;
+        color: #6c757d;
+        font-size: 16px;
+    }
+
+    @include mobile {
+        padding: 16px;
+        margin-bottom: 20px;
+
+        p {
+            font-size: 15px;
+        }
+    }
+}
+
+// Enhanced responsive design
+@media (max-width: 768px) {
+    .commentForm {
+        padding: 20px;
+        margin-bottom: 20px;
+
+        .formHeader {
+            margin-bottom: 14px;
+
+            .userInfo {
+                gap: 10px;
+
+                .avatar {
+                    width: 36px;
+                    height: 36px;
+                    font-size: 14px;
+                }
+
+                .userName {
+                    font-size: 15px;
+                }
+            }
+        }
+
+        .formBody {
+            margin-bottom: 14px;
+
+            .commentInput {
+                min-height: 80px;
+                padding: 10px 14px 10px 40px;
+                font-size: 15px;
+
+                &::placeholder {
+                    font-size: 15px;
+                }
+            }
+
+            .errorMessage {
+                font-size: 13px;
+                padding: 6px 10px;
+            }
+        }
+
+        .formActions {
+            gap: 10px;
+
+            button {
+                padding: 10px 14px;
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .commentForm {
+        padding: 16px;
+        margin-bottom: 16px;
+
+        .formHeader {
+            margin-bottom: 12px;
+
+            .userInfo {
+                gap: 8px;
+
+                .avatar {
+                    width: 32px;
+                    height: 32px;
+                    font-size: 13px;
+                }
+
+                .userName {
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .formBody {
+            margin-bottom: 12px;
+
+            .commentInput {
+                min-height: 70px;
+                padding: 8px 12px 8px 36px;
+                font-size: 14px;
+
+                &::placeholder {
+                    font-size: 14px;
+                }
+            }
+
+            .errorMessage {
+                font-size: 12px;
+                padding: 5px 8px;
+            }
+        }
+
+        .formActions {
+            flex-direction: column;
+            gap: 8px;
+
+            button {
+                width: 100%;
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+        }
+    }
+
+    .loginPrompt {
+        padding: 12px;
+        margin-bottom: 16px;
+
+        p {
+            font-size: 14px;
+        }
+    }
+}
