@@ -161,6 +161,21 @@
     gap: 20px;
 }
 
+.noComments {
+    text-align: center;
+    padding: 40px 20px;
+    color: #7f8c8d;
+    font-style: italic;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px dashed #dee2e6;
+
+    p {
+        margin: 0;
+        font-size: 16px;
+    }
+}
+
 .comment {
     padding: 20px;
     background: #f8f9fa;

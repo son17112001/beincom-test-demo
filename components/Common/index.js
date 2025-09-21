@@ -1,5 +1,6 @@
 export { default as AuthForm } from "./AuthForm";
 export { default as Button } from "./Button";
+export { default as CommentForm } from "./CommentForm";
 export { default as Container } from "./Container";
 export { default as ProtectedRoute } from "./ProtectedRoute";
 // Typography component (if not exists, create a simple one)

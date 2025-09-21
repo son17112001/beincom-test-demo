@@ -1,4 +1,4 @@
-import { FormItem } from "../Form";
+import Form from "@/components/Common/Form/Form";
 
 import Input from ".";
 
@@ -17,7 +17,7 @@ function InputField({
     ...props
 }) {
     return (
-        <FormItem
+        <Form.Item
             {...props}
             required={required}
             name={name}
@@ -34,7 +34,7 @@ function InputField({
                 type={type}
                 {...fieldProps}
             />
-        </FormItem>
+        </Form.Item>
     );
 }
 

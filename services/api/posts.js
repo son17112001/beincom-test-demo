@@ -1,6 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_BASE_URL = 'https://jsonplaceholder.typicode.com';
+import authCookie from "@/utils/cookie";
+
+const API_BASE_URL = "https://jsonplaceholder.typicode.com";
 
 // Create axios instance for posts API
 const postsApi = axios.create({
@@ -11,7 +13,7 @@ const postsApi = axios.create({
 // Fetch posts with pagination
 export const fetchPosts = async ({ pageParam = 1, limit = 10 }) => {
     try {
-        const response = await postsApi.get('/posts', {
+        const response = await postsApi.get("/posts", {
             params: {
                 _page: pageParam,
                 _limit: limit,
@@ -61,7 +63,7 @@ export const fetchUserById = async (userId) => {
 // Search posts by title or body
 export const searchPosts = async ({ query, pageParam = 1, limit = 10 }) => {
     try {
-        const response = await postsApi.get('/posts', {
+        const response = await postsApi.get("/posts", {
             params: {
                 _page: pageParam,
                 _limit: limit,
@@ -76,5 +78,31 @@ export const searchPosts = async ({ query, pageParam = 1, limit = 10 }) => {
         };
     } catch (error) {
         throw new Error(`Failed to search posts: ${error.message}`);
+    }
+};
+
+// Create a new comment
+export const createComment = async (commentData) => {
+    try {
+        // Get token from cookie
+        const token = authCookie.get();
+
+        const response = await fetch("/api/comments", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                ...(token && { Authorization: `Bearer ${token}` }),
+            },
+            body: JSON.stringify(commentData),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Failed to create comment");
+        }
+
+        return await response.json();
+    } catch (error) {
+        throw new Error(`Failed to create comment: ${error.message}`);
     }
 };
