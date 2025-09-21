@@ -13,6 +13,8 @@ const PostCard = ({ post }) => {
         setIsExpanded(!isExpanded);
     };
 
+    // Scroll position is now handled automatically by useScrollRestoration hook
+
     const getExcerpt = (text, maxLength = 150) => {
         if (text.length <= maxLength) return text;
         return text.substring(0, maxLength) + '...';
@@ -65,7 +67,10 @@ const PostCard = ({ post }) => {
 
             <div className={styles.postFooter}>
                 <div className={styles.postActions}>
-                    <Link href={`/posts/${post.id}`} className={styles.viewBtn}>
+                    <Link
+                        href={`/posts/${post.id}`}
+                        className={styles.viewBtn}
+                    >
                         View Details
                     </Link>
                     <span className={styles.commentCount}>

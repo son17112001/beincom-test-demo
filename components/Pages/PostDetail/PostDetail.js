@@ -8,6 +8,7 @@ import CommentForm from "../../Common/CommentForm";
 import Container from "../../Common/Container";
 
 import styles from "./PostDetail.module.scss";
+import { useScrollRestoration } from "@/hooks/useScrollRestoration";
 
 const PostDetailContent = () => {
     const router = useRouter();
@@ -20,6 +21,8 @@ const PostDetailContent = () => {
         refetch: refetchComments,
     } = usePostComments(id);
     const { data: user, isLoading: userLoading } = useUser(post?.userId);
+    // Use scroll restoration hook
+    useScrollRestoration();
 
     if (postLoading) {
         return (

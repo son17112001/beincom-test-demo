@@ -3,6 +3,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 import { useAuth } from "../../../hooks/useAuth";
 import { useInfinitePosts } from "../../../hooks/useInfinitePosts";
+import { useScrollRestoration } from "../../../hooks/useScrollRestoration";
 import Button from "../../Common/Button";
 import PostCard from "../../Common/PostCard";
 import Sidebar from "../../Common/Sidebar";
@@ -13,6 +14,9 @@ const Homepage = () => {
     const { user, isAuthenticated } = useAuth();
     const [ searchQuery, setSearchQuery ] = useState("");
     const [ debouncedSearchQuery, setDebouncedSearchQuery ] = useState("");
+
+    // Use scroll restoration hook
+    useScrollRestoration();
 
     // Debounce search query
     React.useEffect(() => {
