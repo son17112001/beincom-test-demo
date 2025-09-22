@@ -15,7 +15,6 @@ const ProtectedRoute = ({ children, fallback = null }) => {
         }
     }, [ isAuthenticated, loading, router ]);
 
-    // Show loading spinner while checking authentication
     if (loading) {
         return (
             <div style={{
@@ -30,12 +29,10 @@ const ProtectedRoute = ({ children, fallback = null }) => {
         );
     }
 
-    // Show fallback or nothing if not authenticated
     if (!isAuthenticated) {
         return fallback;
     }
 
-    // Render children if authenticated
     return children;
 };
 

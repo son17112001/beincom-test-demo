@@ -20,7 +20,6 @@ const Register = () => {
     const router = useRouter();
     const { isAuthenticated, loading, register } = useAuth();
 
-    // Form state
     const [ formData, setFormData ] = useState({
         email: "",
         username: "",
@@ -28,7 +27,6 @@ const Register = () => {
         password: "",
     });
 
-    // Validation errors
     const [ errors, setErrors ] = useState({
         email: null,
         username: null,
@@ -36,7 +34,6 @@ const Register = () => {
         password: null,
     });
 
-    // Loading state
     const [ isLoading, setIsLoading ] = useState(false);
 
     const handleInputChange = (field, value) => {
@@ -45,7 +42,6 @@ const Register = () => {
             [field]: value,
         }));
 
-        // Real-time validation
         let error = null;
         switch (field) {
             case "email":
@@ -73,7 +69,6 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validate all fields
         const newErrors = {
             email: validateEmail(formData.email),
             username: validateUsername(formData.username),
@@ -83,15 +78,12 @@ const Register = () => {
 
         setErrors(newErrors);
 
-        // Check if there are any errors
         const hasErrors = Object.values(newErrors).some((error) => error !== null);
         if (hasErrors) return;
 
-        // Set loading state
         setIsLoading(true);
 
         try {
-            // Submit form
             const result = await register(formData);
             if (result.success) {
                 router.push("/");

@@ -1,9 +1,7 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
 
-  // SVG configuration
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -13,18 +11,15 @@ const nextConfig = {
     return config;
   },
 
-  // Image optimization
   images: {
     domains: ['localhost'],
     formats: ['image/webp', 'image/avif'],
   },
 
-  // Environment variables
   env: {
     CUSTOM_KEY: process.env.CUSTOM_KEY,
   },
 
-  // Headers
   async headers() {
     return [
       {
@@ -47,7 +42,6 @@ const nextConfig = {
     ];
   },
 
-  // Redirects
   async redirects() {
     return [
       {
@@ -58,7 +52,6 @@ const nextConfig = {
     ];
   },
 
-  // Rewrites (only if API URL is configured)
   async rewrites() {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     if (apiUrl) {

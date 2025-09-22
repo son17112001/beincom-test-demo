@@ -8,12 +8,10 @@ export const useCreateComment = () => {
     return useMutation({
         mutationFn: createComment,
         onSuccess: (data, variables) => {
-            // Invalidate and refetch comments for the specific post
             queryClient.invalidateQueries({
                 queryKey: [ "postComments", variables.postId ],
             });
 
-            // Also invalidate the post query to update comment count if needed
             queryClient.invalidateQueries({
                 queryKey: [ "post", variables.postId ],
             });

@@ -53,7 +53,6 @@ function unsecuredCopyToClipboard(text) {
 }
 export function copyToClipboard(text) {
     if (navigator.clipboard) {
-        // If normal copy method available, use it
         navigator.clipboard
             ?.writeText(text)
             .then(() => {

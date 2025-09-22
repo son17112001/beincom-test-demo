@@ -1,9 +1,6 @@
-// Common API functions
 import { createMutateFetcher,createQueryFetcher } from "./utils";
 
-// API configurations
 const apiConfigs = {
-    // Common
     getList: {
         url: "/api/common/list",
         method: "GET",
@@ -26,16 +23,13 @@ const apiConfigs = {
     },
 };
 
-// Query fetchers
 export const renderGetListFetcher = createQueryFetcher(apiConfigs.getList);
 export const renderGetDetailFetcher = createQueryFetcher(apiConfigs.getDetail);
 
-// Mutation fetchers
 export const renderCreateFetcher = createMutateFetcher(apiConfigs.create);
 export const renderUpdateFetcher = createMutateFetcher(apiConfigs.update);
 export const renderDeleteFetcher = createMutateFetcher(apiConfigs.delete);
 
-// Mock data for development
 export const mockData = {
     users: [
         { id: 1, name: "John Doe", email: "john@example.com", role: "admin" },
@@ -51,10 +45,8 @@ export const mockData = {
     ],
 };
 
-// Mock API functions
 export const mockApi = {
     getList: async (params = {}) => {
-        // Simulate API delay
         await new Promise((resolve) => setTimeout(resolve, 500));
         return {
             data: mockData[params.type] || [],

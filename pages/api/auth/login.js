@@ -8,7 +8,6 @@ export default async function handler(req, res) {
 
     const { email, password } = req.body;
 
-    // Basic validation
     if (!email || !password) {
         return res.status(400).json({
             message: 'Email và mật khẩu là bắt buộc',

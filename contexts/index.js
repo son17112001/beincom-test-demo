@@ -1,4 +1,3 @@
-// App Context
 import { createContext, useContext, useState } from "react";
 
 const AppContext = createContext();
@@ -25,5 +24,4 @@ export const useAppContext = () => {
     return context;
 };
 
-// Search Context
 export { SearchProvider, useSearchContext } from './SearchContext';

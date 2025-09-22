@@ -1,11 +1,9 @@
-// App configuration
 export const APP_CONFIG = {
     NAME: "Next.js Admin Template",
     VERSION: "1.0.0",
     DESCRIPTION: "A modern admin dashboard template",
 };
 
-// Theme colors
 export const THEME = {
     COLORS: {
         PRIMARY: "#3B82F6",
@@ -42,7 +40,6 @@ export const THEME = {
     },
 };
 
-// Validation patterns
 export const VALIDATION = {
     EMAIL: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     PHONE: /^[\+]?[1-9][\d]{0,15}$/,
@@ -50,13 +47,11 @@ export const VALIDATION = {
     URL: /^https?:\/\/.+/,
 };
 
-// Pagination
 export const PAGINATION = {
     DEFAULT_PAGE_SIZE: 10,
     PAGE_SIZE_OPTIONS: [ 5, 10, 20, 50, 100 ],
 };
 
-// Date formats
 export const DATE_FORMATS = {
     DISPLAY: "DD/MM/YYYY",
     INPUT: "YYYY-MM-DD",
@@ -64,7 +59,6 @@ export const DATE_FORMATS = {
     TIME: "HH:mm",
 };
 
-// HTTP status codes
 export const HTTP_STATUS = {
     OK: 200,
     CREATED: 201,
@@ -76,7 +70,6 @@ export const HTTP_STATUS = {
     INTERNAL_SERVER_ERROR: 500,
 };
 
-// Common messages
 export const MESSAGES = {
     SUCCESS: {
         CREATED: "Created successfully",
@@ -99,5 +92,4 @@ export const MESSAGES = {
     },
 };
 
-// Re-export errorCode
 export { errorCodes } from './errorCode';

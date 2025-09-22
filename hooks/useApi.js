@@ -1,11 +1,9 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import apiUtils from '../services/api/utils';
 
-// Custom hook for API calls
 export const useApi = () => {
   const queryClient = useQueryClient();
 
-  // GET request hook
   const useGet = (key, url, options = {}) => {
     return useQuery({
       queryKey: key,
@@ -14,7 +12,6 @@ export const useApi = () => {
     });
   };
 
-  // POST request hook
   const usePost = (options = {}) => {
     return useMutation({
       mutationFn: ({ url, data }) => apiUtils.post(url, data),
@@ -22,7 +19,6 @@ export const useApi = () => {
     });
   };
 
-  // PUT request hook
   const usePut = (options = {}) => {
     return useMutation({
       mutationFn: ({ url, data }) => apiUtils.put(url, data),
@@ -30,7 +26,6 @@ export const useApi = () => {
     });
   };
 
-  // DELETE request hook
   const useDelete = (options = {}) => {
     return useMutation({
       mutationFn: ({ url }) => apiUtils.delete(url),
@@ -38,7 +33,6 @@ export const useApi = () => {
     });
   };
 
-  // Invalidate queries
   const invalidateQueries = (queryKey) => {
     queryClient.invalidateQueries({ queryKey });
   };

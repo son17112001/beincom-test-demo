@@ -14,10 +14,8 @@ const Homepage = () => {
     const { searchQuery, selectedFilter } = useSearchContext();
     const [ debouncedSearchQuery, setDebouncedSearchQuery ] = useState("");
 
-    // Use scroll restoration hook
     useScrollRestoration();
 
-    // Debounce search query from context
     useEffect(() => {
         const timer = setTimeout(() => {
             setDebouncedSearchQuery(searchQuery);
@@ -26,7 +24,6 @@ const Homepage = () => {
         return () => clearTimeout(timer);
     }, [ searchQuery ]);
 
-    // Get current filter option
     const currentFilter = getCurrentFilter(selectedFilter);
 
     const {
@@ -45,7 +42,6 @@ const Homepage = () => {
         order: currentFilter.order,
     });
 
-    // Flatten all posts from all pages
     const allPosts = useMemo(() => {
         return data?.pages?.flatMap((page) => page.posts) || [];
     }, [ data ]);

@@ -22,7 +22,6 @@ function AppWrapper({ children, role, branchId, classId, enableOnlineClass, host
         location.href = defaultTeacherPath;
     };
 
-    // remove meta from query params
     useEffect(() => {
         const { meta, ...rest } = queryParams;
         if (meta) {

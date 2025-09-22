@@ -1,25 +1,20 @@
-// Basic application paths
 const paths = {
-    // Main pages
     HOME: "/",
     LOGIN: "/login",
     DASHBOARD: "/dashboard",
     PROFILE: "/profile",
 
-    // API endpoints
     API: {
         AUTH: "/api/auth",
         USERS: "/api/users",
         UPLOAD: "/api/upload",
     },
 
-    // File paths
     FILES: {
         ICONS: "/icons",
         IMAGES: "/images",
     },
 
-    // Utility functions
     buildPath: (path, params = {}) => {
         let result = path;
         Object.keys(params).forEach((key) => {
@@ -28,12 +23,10 @@ const paths = {
         return result;
     },
 
-    // Navigation helpers
     isActive: (currentPath, targetPath) => {
         return currentPath === targetPath || currentPath.startsWith(targetPath + "/");
     },
 
-    // Breadcrumb helpers
     getBreadcrumbs: (path) => {
         const segments = path.split("/").filter(Boolean);
         const breadcrumbs = [ { name: "Home", path: "/" } ];

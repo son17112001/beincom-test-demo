@@ -1,5 +1,4 @@
 export const errorCodes = {
-    // Authentication errors
     AUTH_INVALID_CREDENTIALS: {
         message: "Email hoặc mật khẩu không đúng",
         field: "password"
@@ -21,7 +20,6 @@ export const errorCodes = {
         field: "confirmPassword"
     },
 
-    // Validation errors
     VALIDATION_REQUIRED: {
         message: "Trường này là bắt buộc"
     },
@@ -34,7 +32,6 @@ export const errorCodes = {
         field: "phone"
     },
 
-    // Server errors
     SERVER_ERROR: {
         message: "Có lỗi xảy ra, vui lòng thử lại sau"
     },
@@ -42,7 +39,6 @@ export const errorCodes = {
         message: "Hệ thống đang bảo trì, vui lòng thử lại sau"
     },
 
-    // Network errors
     NETWORK_ERROR: {
         message: "Lỗi kết nối mạng, vui lòng kiểm tra kết nối"
     },

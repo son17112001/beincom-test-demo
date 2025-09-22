@@ -4,13 +4,11 @@ import authCookie from "@/utils/cookie";
 
 const API_BASE_URL = "https://jsonplaceholder.typicode.com";
 
-// Create axios instance for posts API
 const postsApi = axios.create({
     baseURL: API_BASE_URL,
     timeout: 10000,
 });
 
-// Fetch posts with pagination and sorting
 export const fetchPosts = async ({ pageParam = 1, limit = 10, sortBy = 'id', order = 'desc' }) => {
     try {
         const response = await postsApi.get("/posts", {
@@ -32,7 +30,6 @@ export const fetchPosts = async ({ pageParam = 1, limit = 10, sortBy = 'id', ord
     }
 };
 
-// Fetch single post by ID
 export const fetchPostById = async (postId) => {
     try {
         const response = await postsApi.get(`/posts/${postId}`);
@@ -42,7 +39,6 @@ export const fetchPostById = async (postId) => {
     }
 };
 
-// Fetch comments for a post
 export const fetchPostComments = async (postId) => {
     try {
         const response = await postsApi.get(`/posts/${postId}/comments`);
@@ -52,7 +48,6 @@ export const fetchPostComments = async (postId) => {
     }
 };
 
-// Fetch user by ID
 export const fetchUserById = async (userId) => {
     try {
         const response = await postsApi.get(`/users/${userId}`);
@@ -62,7 +57,6 @@ export const fetchUserById = async (userId) => {
     }
 };
 
-// Search posts by title or body with sorting
 export const searchPosts = async ({ query, pageParam = 1, limit = 10, sortBy = 'id', order = 'desc' }) => {
     try {
         const response = await postsApi.get("/posts", {
@@ -85,10 +79,8 @@ export const searchPosts = async ({ query, pageParam = 1, limit = 10, sortBy = '
     }
 };
 
-// Create a new comment
 export const createComment = async (commentData) => {
     try {
-        // Get token from cookie
         const token = authCookie.get();
 
         const response = await fetch("/api/comments", {

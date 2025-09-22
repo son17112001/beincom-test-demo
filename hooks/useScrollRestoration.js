@@ -7,7 +7,6 @@ export const useScrollRestoration = () => {
     const router = useRouter();
 
     useEffect(() => {
-        // Save scroll position when navigating to post detail
         const handleRouteChangeStart = (url) => {
             console.log("🔄 Route change start:", url);
             if (url.includes("/posts/") && url !== "/posts") {
@@ -17,11 +16,9 @@ export const useScrollRestoration = () => {
             }
         };
 
-        // Restore scroll position when returning to homepage
         const handleRouteChangeComplete = (url) => {
             console.log("✅ Route change complete:", url);
 
-            // Check for homepage with or without locale prefix
             const isHomepage = url === "/" || url === "/en" || url === "/vi" || url.endsWith("/en") || url.endsWith("/vi");
 
             if (isHomepage) {
@@ -32,22 +29,17 @@ export const useScrollRestoration = () => {
                     const scrollY = parseInt(savedPosition, 10);
                     console.log("📍 Restoring scroll position:", scrollY);
 
-                    // Use multiple attempts to ensure scroll works
                     const restoreScroll = () => {
                         window.scrollTo(0, scrollY);
                         console.log("🎯 Scrolled to:", scrollY);
                     };
 
-                    // Try immediately
                     restoreScroll();
 
-                    // Try after a short delay
                     setTimeout(restoreScroll, 50);
 
-                    // Try after DOM is fully loaded
                     setTimeout(restoreScroll, 200);
 
-                    // Clear saved position after restoring
                     sessionStorage.removeItem(SCROLL_KEY);
                 }
             }

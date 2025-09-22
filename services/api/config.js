@@ -1,4 +1,3 @@
-// API Configuration
 export const API_CONFIG = {
     baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api",
     timeout: parseInt(process.env.NEXT_PUBLIC_API_TIMEOUT) || 30000,
@@ -7,23 +6,18 @@ export const API_CONFIG = {
     },
 };
 
-// API Endpoints
 export const API_ENDPOINTS = {
-    // Auth
     LOGIN: "/auth/login",
     LOGOUT: "/auth/logout",
     REFRESH_TOKEN: "/auth/refresh",
 
-    // Users
     USERS: "/users",
     USER_PROFILE: "/users/profile",
 
-    // Common
     UPLOAD: "/upload",
     FILES: "/files",
 };
 
-// HTTP Status Codes
 export const HTTP_STATUS = {
     OK: 200,
     CREATED: 201,
@@ -35,7 +29,6 @@ export const HTTP_STATUS = {
     INTERNAL_SERVER_ERROR: 500,
 };
 
-// Error Messages
 export const ERROR_MESSAGES = {
     NETWORK_ERROR: "Network error occurred",
     UNAUTHORIZED: "Unauthorized access",
@@ -45,7 +38,6 @@ export const ERROR_MESSAGES = {
     VALIDATION_ERROR: "Validation failed",
 };
 
-// HTTP Methods
 export const METHOD = {
     GET: "GET",
     POST: "POST",
@@ -54,7 +46,6 @@ export const METHOD = {
     PATCH: "PATCH",
 };
 
-// Headers
 export const HEADERS = {
     JSON: {
         "Content-Type": "application/json",

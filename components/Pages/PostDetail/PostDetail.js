@@ -21,7 +21,6 @@ const PostDetailContent = () => {
         refetch: refetchComments,
     } = usePostComments(id);
     const { data: user, isLoading: userLoading } = useUser(post?.userId);
-    // Use scroll restoration hook
     useScrollRestoration();
 
     if (postLoading) {

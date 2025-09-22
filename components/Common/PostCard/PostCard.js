@@ -13,7 +13,6 @@ const PostCard = ({ post }) => {
         setIsExpanded(!isExpanded);
     };
 
-    // Scroll position is now handled automatically by useScrollRestoration hook
 
     const getExcerpt = (text, maxLength = 150) => {
         if (text.length <= maxLength) return text;

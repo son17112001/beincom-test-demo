@@ -8,7 +8,6 @@ const isMessageKey = (obj) =>
 function useTranslate() {
     const intl = useIntl();
 
-    // Example: components\layouts\Header\Menu\Menu.js
     const formatMessageOptions = (
         options = [],
         label = "label",

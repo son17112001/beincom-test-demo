@@ -12,7 +12,6 @@ const FilterDropdown = ({
 }) => {
     const dropdownRef = useRef(null);
 
-    // Close dropdown when clicking outside
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -29,7 +28,6 @@ const FilterDropdown = ({
         };
     }, [isOpen, onClose]);
 
-    // Close dropdown on escape key
     useEffect(() => {
         const handleEscape = (event) => {
             if (event.key === 'Escape') {

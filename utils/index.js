@@ -62,5 +62,4 @@ export const isFeatureEnabled = (host, featureEnableConfig) => {
     return featureEnableConfig.includes(host);
 };
 
-// Filter helper exports
 export { getCurrentFilter, getFilterOptions, getDefaultFilter } from './filter-helper';
