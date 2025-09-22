@@ -1,4 +1,4 @@
-# Next.js Template - Social Media App
+# Social Media App
 
 Một ứng dụng mạng xã hội được xây dựng với Next.js, React và các công nghệ hiện đại khác.
 
@@ -220,49 +220,3 @@ Chạy với debug mode:
 ```bash
 DEBUG=* npm run dev
 ```
-
-## 📝 Development
-
-### Code Style
-- Sử dụng ESLint và Prettier
-- Tuân thủ naming conventions
-- Viết comments cho code phức tạp
-
-### Git Workflow
-1. Tạo branch mới cho feature
-2. Commit với message rõ ràng
-3. Tạo Pull Request
-4. Code review trước khi merge
-
-## 🤝 Contributing
-
-1. Fork repository
-2. Tạo feature branch
-3. Commit changes
-4. Push to branch
-5. Tạo Pull Request
-
-## 📄 License
-
-MIT License - xem file [LICENSE](LICENSE) để biết thêm chi tiết.
-
-## 📞 Support
-
-Nếu gặp vấn đề, vui lòng tạo issue trên GitHub hoặc liên hệ:
-
-- Email: support@example.com
-- GitHub Issues: [Tạo issue mới](https://github.com/your-repo/issues)
-
-## 🔄 Changelog
-
-### v1.0.0
-- ✅ Authentication system
-- ✅ Posts management
-- ✅ Search & Filter functionality
-- ✅ Comments system
-- ✅ Responsive design
-- ✅ Internationalization support
-
----
-
-**Happy Coding! 🎉**
