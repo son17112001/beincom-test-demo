@@ -1,9 +1,9 @@
 {
-    "name": "nextjs-admin-template",
+    "name": "beincom-test",
     "version": "0.1.0",
     "private": true,
-    "description": "Next.js Admin Dashboard Template with modern UI components",
-    "author": "Your Name <your.email@example.com>",
+    "description": "beincom-test",
+    "author": "son17112001@gmail.com",
     "license": "MIT",
     "engines": {
         "node": ">=18.17.0"
