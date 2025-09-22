@@ -41,7 +41,7 @@ function Layout({ children, title, breadcrumb, role, keyTitle }) {
         <Root title={title} keyTitle={keyTitle}>
             <Header />
             <Body>{children}</Body>
-            <Footer />
+            {/* <Footer /> */}
         </Root>
     );
 }
