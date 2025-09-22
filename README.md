@@ -1,235 +1,268 @@
-# {{projectName}}
+# Next.js Template - Social Media App
 
-{{projectDescription}}
+Một ứng dụng mạng xã hội được xây dựng với Next.js, React và các công nghệ hiện đại khác.
 
-## ✨ Features
+## 🚀 Tính năng chính
 
-- **Next.js 14** - React framework with App Router
-- **Modern UI Components** - Reusable component library with SCSS modules
-- **Internationalization** - Multi-language support with react-intl
-- **State Management** - TanStack Query for server state
-- **Form Handling** - RC Field Form integration
-- **Data Visualization** - ApexCharts integration
-- **File Upload** - React Dropzone integration
-- **Rich Text Editor** - Quill editor
-- **Drag & Drop** - DND Kit for interactive interfaces
-- **Responsive Design** - Mobile-first approach
-- **Type Safety** - ESLint and Prettier configuration
-- **Performance** - Optimized with Next.js features
+- **Authentication**: Đăng nhập, đăng ký và quản lý người dùng
+- **Posts Management**: Tạo, xem và quản lý bài viết
+- **Search & Filter**: Tìm kiếm và lọc bài viết theo tiêu chí khác nhau
+- **Comments System**: Hệ thống bình luận cho bài viết
+- **Infinite Scroll**: Tải thêm bài viết tự động
+- **Responsive Design**: Giao diện thân thiện trên mọi thiết bị
+- **Internationalization**: Hỗ trợ đa ngôn ngữ (Tiếng Việt/English)
 
-## 📋 Prerequisites
+## 🛠️ Công nghệ sử dụng
 
-- Node.js 18.17.0 or higher
-- npm or yarn package manager
+- **Frontend**: Next.js 13, React 18, TypeScript
+- **Styling**: SCSS Modules
+- **State Management**: React Query, Context API
+- **Authentication**: JWT, Cookies
+- **API**: JSONPlaceholder API
+- **Icons**: Custom SVG Icons
+- **UI Components**: Custom Components
 
-## 🛠️ Installation
+## 📋 Yêu cầu hệ thống
 
-1. **Clone the template:**
-   ```bash
-   npx create-next-app@latest my-app --template https://github.com/yourusername/nextjs-admin-template
-   ```
+- Node.js >= 16.0.0
+- npm >= 8.0.0 hoặc yarn >= 1.22.0
+- Git
 
-2. **Navigate to project directory:**
-   ```bash
-   cd my-app
-   ```
+## 🔧 Cài đặt
 
-3. **Install dependencies:**
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+### 1. Clone repository
 
-4. **Set up environment variables:**
-   ```bash
-   cp .env.example .env.local
-   ```
+```bash
+git clone <repository-url>
+cd nextjs-template
+```
 
-   Edit `.env.local` with your configuration:
-   ```env
-   NEXT_PUBLIC_API_URL=your_api_url_here
-   NEXT_PUBLIC_APP_NAME={{projectName}}
-   ```
+### 2. Cài đặt dependencies
 
-5. **Run the development server:**
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
+```bash
+npm install
+# hoặc
+yarn install
+```
 
-6. **Open your browser:**
-   Navigate to [http://localhost:3000](http://localhost:3000)
+### 3. Cấu hình environment variables
 
-## 📁 Project Structure
+Tạo file `.env.local` trong thư mục gốc:
+
+```env
+NEXT_PUBLIC_API_URL=https://jsonplaceholder.typicode.com
+NEXT_PUBLIC_API_TIMEOUT=30000
+CUSTOM_KEY=your_custom_key_here
+```
+
+### 4. Chạy ứng dụng
+
+```bash
+npm run dev
+# hoặc
+yarn dev
+```
+
+Ứng dụng sẽ chạy tại [http://localhost:3000](http://localhost:3000)
+
+## 📁 Cấu trúc thư mục
 
 ```
-{{projectName}}/
-├── components/           # Reusable UI components
-│   ├── Common/          # Basic components (Button, Input, etc.)
+nextjs-template/
+├── components/           # React components
+│   ├── Common/          # Components dùng chung
 │   ├── layouts/         # Layout components
-│   └── Pages/           # Page-specific components
-├── constants/           # Application constants
-├── contexts/            # React contexts
+│   └── Pages/           # Page components
+├── constants/           # Constants và config
+├── contexts/            # React Context providers
 ├── hooks/               # Custom React hooks
 ├── locales/             # Internationalization files
-├── middlewares/         # Next.js middlewares
 ├── pages/               # Next.js pages
-├── public/              # Static assets
+│   ├── api/            # API routes
+│   └── posts/          # Dynamic routes
+├── public/              # Static files
 ├── services/            # API services
-├── styles/              # Global styles and SCSS
+├── styles/              # Global styles
 └── utils/               # Utility functions
 ```
 
-## 🎨 Component Library
+## 🎯 Cách sử dụng
 
-The template includes a comprehensive component library:
+### Authentication
 
-### Common Components
-- **Button** - Various button styles and states
-- **Input** - Form inputs with validation
-- **Modal** - Modal dialogs and overlays
-- **Table** - Data tables with sorting and pagination
-- **Form** - Form components with validation
-- **Loading** - Loading states and spinners
-- **Alert** - Notification and alert components
+1. **Đăng ký tài khoản mới**:
+   - Truy cập `/register`
+   - Điền thông tin đăng ký
+   - Nhấn "Đăng ký"
 
-### Layout Components
-- **Header** - Application header
-- **Sidebar** - Navigation sidebar
-- **Footer** - Application footer
-- **Layout** - Main layout wrapper
+2. **Đăng nhập**:
+   - Truy cập `/login`
+   - Nhập email và mật khẩu
+   - Nhấn "Đăng nhập"
 
-## 🌐 Internationalization
+### Quản lý bài viết
 
-The template supports multiple languages:
+1. **Xem danh sách bài viết**:
+   - Truy cập trang chủ `/`
+   - Xem danh sách bài viết với infinite scroll
 
-1. **Add new locale:**
-   ```bash
-   # Add new locale to next.config.js
-   locales: ['en', 'vi', 'fr']
-   ```
+2. **Tìm kiếm bài viết**:
+   - Sử dụng thanh tìm kiếm ở header
+   - Gõ từ khóa để tìm kiếm theo title hoặc content
 
-2. **Create locale file:**
-   ```json
-   // locales/fr.json
-   {
-     "common": {
-       "save": "Enregistrer",
-       "cancel": "Annuler"
-     }
-   }
-   ```
+3. **Lọc bài viết**:
+   - Nhấn nút "Filter" bên cạnh thanh tìm kiếm
+   - Chọn tiêu chí sắp xếp:
+     - Newest First (Mới nhất)
+     - Oldest First (Cũ nhất)
+     - Title A-Z (Tiêu đề A-Z)
+     - Title Z-A (Tiêu đề Z-A)
+     - Most Comments (Nhiều bình luận nhất)
+     - Least Comments (Ít bình luận nhất)
 
-3. **Use in components:**
-   ```jsx
-   import { useIntl } from 'react-intl';
+4. **Xem chi tiết bài viết**:
+   - Nhấn vào bài viết để xem chi tiết
+   - Xem bình luận và thêm bình luận mới
 
-   const intl = useIntl();
-   const saveText = intl.formatMessage({ id: 'common.save' });
-   ```
+### Bình luận
 
-## ⚙️ Configuration
+1. **Xem bình luận**:
+   - Truy cập trang chi tiết bài viết
+   - Xem danh sách bình luận
 
-### Environment Variables
+2. **Thêm bình luận**:
+   - Đăng nhập để có thể bình luận
+   - Điền thông tin và nội dung bình luận
+   - Nhấn "Gửi bình luận"
 
-Create a `.env.local` file with the following variables:
+## 🔧 Scripts có sẵn
 
-```env
-# API Configuration
-NEXT_PUBLIC_API_URL=http://localhost:8000/api
-NEXT_PUBLIC_APP_NAME={{projectName}}
+```bash
+# Chạy development server
+npm run dev
 
-# Authentication
-NEXTAUTH_SECRET=your-secret-key
-NEXTAUTH_URL=http://localhost:3000
+# Build cho production
+npm run build
 
-# Database (if applicable)
-DATABASE_URL=your-database-url
+# Chạy production server
+npm start
 
-# External Services
-NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=your-ga-id
+# Chạy linter
+npm run lint
+
+# Fix linter errors
+npm run lint:fix
+
+# Chạy type checking
+npm run type-check
 ```
 
-### Next.js Configuration
+## 🌐 API Endpoints
 
-The template includes optimized Next.js configuration:
+### Authentication
+- `POST /api/auth/login` - Đăng nhập
+- `POST /api/auth/register` - Đăng ký
+- `POST /api/auth/validate` - Xác thực token
 
-- **Image Optimization** - Configured for multiple domains
-- **Internationalization** - Multi-language support
-- **Webpack Configuration** - SVG support and SCSS modules
-- **Security Headers** - Basic security configuration
+### Posts
+- `GET /api/posts` - Lấy danh sách bài viết
+- `GET /api/posts/:id` - Lấy chi tiết bài viết
+- `GET /api/posts/:id/comments` - Lấy bình luận của bài viết
 
-## 📝 Available Scripts
+### Comments
+- `POST /api/comments` - Tạo bình luận mới
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint with auto-fix
-- `npm run format` - Format code with Prettier
+## 🎨 Customization
 
-## 🎯 Development Guidelines
+### Thay đổi theme
+Chỉnh sửa file `styles/globals.scss` để thay đổi CSS variables:
+
+```scss
+:root {
+  --primary-color: #your-color;
+  --secondary-color: #your-color;
+  // ... các biến khác
+}
+```
+
+### Thêm ngôn ngữ mới
+1. Tạo file `locales/[language].json`
+2. Thêm ngôn ngữ vào `constants/constant.js`
+3. Cập nhật `next.config.js`
+
+### Thêm filter mới
+1. Thêm option vào `constants/constant.js`
+2. Cập nhật logic trong `utils/filter-helper.js`
+
+## 🐛 Troubleshooting
+
+### Lỗi thường gặp
+
+1. **Module not found**:
+   ```bash
+   rm -rf node_modules package-lock.json
+   npm install
+   ```
+
+2. **Port đã được sử dụng**:
+   ```bash
+   npm run dev -- -p 3001
+   ```
+
+3. **Build failed**:
+   ```bash
+   npm run lint:fix
+   npm run build
+   ```
+
+### Debug mode
+Chạy với debug mode:
+```bash
+DEBUG=* npm run dev
+```
+
+## 📝 Development
 
 ### Code Style
-- Use ESLint and Prettier for consistent code formatting
-- Follow the existing component structure
-- Use SCSS modules for styling
-- Implement proper TypeScript types (if using TS)
+- Sử dụng ESLint và Prettier
+- Tuân thủ naming conventions
+- Viết comments cho code phức tạp
 
-### Component Development
-- Create components in the appropriate directory
-- Export components through index files
-- Use SCSS modules for component-specific styles
-- Implement proper prop validation
-
-### State Management
-- Use TanStack Query for server state
-- Use React Context for global client state
-- Implement proper error handling
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Configure environment variables
-4. Deploy automatically
-
-### Other Platforms
-The template is compatible with any platform that supports Next.js:
-- Netlify
-- AWS Amplify
-- DigitalOcean App Platform
-- Railway
+### Git Workflow
+1. Tạo branch mới cho feature
+2. Commit với message rõ ràng
+3. Tạo Pull Request
+4. Code review trước khi merge
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+1. Fork repository
+2. Tạo feature branch
+3. Commit changes
+4. Push to branch
+5. Tạo Pull Request
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- [Next.js](https://nextjs.org/) - React framework
-- [TanStack Query](https://tanstack.com/query) - Data fetching
-- [Radix UI](https://www.radix-ui.com/) - UI primitives
-- [ApexCharts](https://apexcharts.com/) - Data visualization
+MIT License - xem file [LICENSE](LICENSE) để biết thêm chi tiết.
 
 ## 📞 Support
 
-If you have any questions or need help, please:
+Nếu gặp vấn đề, vui lòng tạo issue trên GitHub hoặc liên hệ:
 
-1. Check the [documentation](docs/)
-2. Search [existing issues](https://github.com/yourusername/nextjs-admin-template/issues)
-3. Create a new issue with detailed information
+- Email: support@example.com
+- GitHub Issues: [Tạo issue mới](https://github.com/your-repo/issues)
+
+## 🔄 Changelog
+
+### v1.0.0
+- ✅ Authentication system
+- ✅ Posts management
+- ✅ Search & Filter functionality
+- ✅ Comments system
+- ✅ Responsive design
+- ✅ Internationalization support
 
 ---
 
-Made with ❤️ by {{authorName}}
+**Happy Coding! 🎉**

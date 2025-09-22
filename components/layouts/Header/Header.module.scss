@@ -162,6 +162,10 @@
     }
 }
 
+.mobileSearchButton {
+    display: none;
+}
+
 .nav {
     display: flex;
     align-items: center;
@@ -338,9 +342,38 @@
 
     .nav {
         gap: 0.5rem;
+        display: flex;
+        align-items: center;
 
         .navItem {
             padding: 0.6rem;
+        }
+    }
+
+    .mobileSearchButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-primary);
+        border-radius: var(--radius-full);
+        color: var(--text-secondary);
+        font-size: 1.25rem;
+        cursor: pointer;
+        transition: var(--transition);
+        margin-right: 0.5rem;
+
+        &:hover {
+            background: var(--bg-primary);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px var(--primary-100);
         }
     }
 
