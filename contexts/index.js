@@ -24,3 +24,6 @@ export const useAppContext = () => {
     }
     return context;
 };
+
+// Search Context
+export { SearchProvider, useSearchContext } from './SearchContext';

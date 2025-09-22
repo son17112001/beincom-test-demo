@@ -34,3 +34,16 @@ export const FieldTypes = {
     SELECT: "select",
     MULTI_SELECT: "multi_select",
 };
+
+// Search and Filter options
+export const FILTER_OPTIONS = [
+    { value: "newest", label: "Newest First", sortBy: "id", order: "desc" },
+    { value: "oldest", label: "Oldest First", sortBy: "id", order: "asc" },
+    { value: "title-asc", label: "Title A-Z", sortBy: "title", order: "asc" },
+    { value: "title-desc", label: "Title Z-A", sortBy: "title", order: "desc" },
+    { value: "most-comments", label: "Most Comments", sortBy: "comments", order: "desc" },
+    { value: "least-comments", label: "Least Comments", sortBy: "comments", order: "asc" },
+];
+
+// Default filter
+export const DEFAULT_FILTER = "newest";

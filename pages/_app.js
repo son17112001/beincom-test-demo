@@ -7,6 +7,7 @@ import NProgress from "nprogress";
 import { Toaster } from "sonner";
 
 import { AuthProvider } from "../hooks/useAuth";
+import { SearchProvider } from "../contexts";
 import en from "../locales/en.json";
 import vi from "../locales/vi.json";
 
@@ -51,10 +52,12 @@ function MyApp({ Component, pageProps }) {
     return (
         <QueryClientProvider client={queryClient}>
             <AuthProvider>
-                <IntlProvider messages={messages[locale]} locale={locale}>
-                    <Component {...pageProps} />
-                    <Toaster richColors closeButton position="top-center" />
-                </IntlProvider>
+                <SearchProvider>
+                    <IntlProvider messages={messages[locale]} locale={locale}>
+                        <Component {...pageProps} />
+                        <Toaster richColors closeButton position="top-center" />
+                    </IntlProvider>
+                </SearchProvider>
             </AuthProvider>
             <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>

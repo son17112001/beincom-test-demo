@@ -1,31 +1,33 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { useAuth } from "../../../hooks/useAuth";
+import { useSearchContext } from "../../../contexts";
 import { useInfinitePosts } from "../../../hooks/useInfinitePosts";
 import { useScrollRestoration } from "../../../hooks/useScrollRestoration";
+import { getCurrentFilter } from "../../../utils";
 import Button from "../../Common/Button";
 import PostCard from "../../Common/PostCard";
-import Sidebar from "../../Common/Sidebar";
 
 import styles from "./Homepage.module.scss";
 
 const Homepage = () => {
-    const { user, isAuthenticated } = useAuth();
-    const [ searchQuery, setSearchQuery ] = useState("");
+    const { searchQuery, selectedFilter } = useSearchContext();
     const [ debouncedSearchQuery, setDebouncedSearchQuery ] = useState("");
 
     // Use scroll restoration hook
     useScrollRestoration();
 
-    // Debounce search query
-    React.useEffect(() => {
+    // Debounce search query from context
+    useEffect(() => {
         const timer = setTimeout(() => {
             setDebouncedSearchQuery(searchQuery);
         }, 500);
 
         return () => clearTimeout(timer);
     }, [ searchQuery ]);
+
+    // Get current filter option
+    const currentFilter = getCurrentFilter(selectedFilter);
 
     const {
         data,
@@ -39,6 +41,8 @@ const Homepage = () => {
     } = useInfinitePosts({
         limit: 10,
         searchQuery: debouncedSearchQuery,
+        sortBy: currentFilter.sortBy,
+        order: currentFilter.order,
     });
 
     // Flatten all posts from all pages
@@ -46,13 +50,6 @@ const Homepage = () => {
         return data?.pages?.flatMap((page) => page.posts) || [];
     }, [ data ]);
 
-    const handleSearch = (e) => {
-        setSearchQuery(e.target.value);
-    };
-
-    const handleClearSearch = () => {
-        setSearchQuery("");
-    };
 
     const handleRefresh = () => {
         refetch();
@@ -99,6 +96,8 @@ const Homepage = () => {
                                     Showing {allPosts.length} posts
                                     {debouncedSearchQuery &&
                                         ` for &quot;${debouncedSearchQuery}&quot;`}
+                                    {currentFilter.value !== 'newest' &&
+                                        ` • Sorted by ${currentFilter.label}`}
                                 </p>
                             </div>
                         )}

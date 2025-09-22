@@ -2,13 +2,29 @@ import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 import { fetchPostById, fetchPostComments, fetchPosts, fetchUserById, searchPosts } from '../services/api/posts';
 
-export const useInfinitePosts = ({ limit = 10, searchQuery = '' } = {}) => {
+export const useInfinitePosts = ({
+    limit = 10,
+    searchQuery = '',
+    sortBy = 'id',
+    order = 'desc'
+} = {}) => {
     const queryFn = searchQuery ?
-        ({ pageParam }) => searchPosts({ query: searchQuery, pageParam, limit }) :
-        ({ pageParam }) => fetchPosts({ pageParam, limit });
+        ({ pageParam }) => searchPosts({
+            query: searchQuery,
+            pageParam,
+            limit,
+            sortBy,
+            order
+        }) :
+        ({ pageParam }) => fetchPosts({
+            pageParam,
+            limit,
+            sortBy,
+            order
+        });
 
     return useInfiniteQuery({
-        queryKey: [ 'posts', { limit, searchQuery } ],
+        queryKey: [ 'posts', { limit, searchQuery, sortBy, order } ],
         queryFn,
         getNextPageParam: (lastPage) => lastPage.nextPage,
         initialPageParam: 1,

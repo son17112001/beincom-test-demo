@@ -52,12 +52,15 @@
 
 .searchBar {
     flex: 1;
-    max-width: 400px;
+    max-width: 500px;
     margin: 0 2rem;
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 
     .searchInput {
-        width: 100%;
+        flex: 1;
         padding: 0.8rem 1.2rem 0.8rem 4rem;
         border: 1px solid var(--border-primary);
         border-radius: var(--radius-full);
@@ -84,6 +87,78 @@
         transform: translateY(-50%);
         color: var(--text-tertiary);
         font-size: 1.6rem;
+        z-index: 1;
+    }
+
+    .clearButton {
+        position: absolute;
+        right: 5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: var(--text-tertiary);
+        font-size: 1.4rem;
+        cursor: pointer;
+        padding: 0.4rem;
+        border-radius: var(--radius);
+        transition: var(--transition);
+        z-index: 1;
+
+        &:hover {
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+        }
+    }
+
+    .filterContainer {
+        position: relative;
+    }
+
+    .filterButton {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.2rem;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-primary);
+        border-radius: var(--radius-full);
+        color: var(--text-secondary);
+        font-size: 1.4rem;
+        cursor: pointer;
+        transition: var(--transition);
+        white-space: nowrap;
+
+        &:hover {
+            background: var(--bg-primary);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px var(--primary-100);
+        }
+    }
+
+    .filterIcon {
+        font-size: 1.6rem;
+    }
+
+    .filterText {
+        font-weight: 500;
+    }
+
+    .arrowIcon {
+        font-size: 1.2rem;
+        transition: transform 0.2s ease;
+    }
+
+    .filterDropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        z-index: 1000;
     }
 }
 
@@ -235,8 +310,14 @@
 
 @media (max-width: 1024px) {
     .searchBar {
-        max-width: 300px;
+        max-width: 400px;
         margin: 0 1rem;
+
+        .filterButton {
+            .filterText {
+                display: none;
+            }
+        }
     }
 }
 

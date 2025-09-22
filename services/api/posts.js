@@ -10,13 +10,15 @@ const postsApi = axios.create({
     timeout: 10000,
 });
 
-// Fetch posts with pagination
-export const fetchPosts = async ({ pageParam = 1, limit = 10 }) => {
+// Fetch posts with pagination and sorting
+export const fetchPosts = async ({ pageParam = 1, limit = 10, sortBy = 'id', order = 'desc' }) => {
     try {
         const response = await postsApi.get("/posts", {
             params: {
                 _page: pageParam,
                 _limit: limit,
+                _sort: sortBy,
+                _order: order,
             },
         });
 
@@ -60,14 +62,16 @@ export const fetchUserById = async (userId) => {
     }
 };
 
-// Search posts by title or body
-export const searchPosts = async ({ query, pageParam = 1, limit = 10 }) => {
+// Search posts by title or body with sorting
+export const searchPosts = async ({ query, pageParam = 1, limit = 10, sortBy = 'id', order = 'desc' }) => {
     try {
         const response = await postsApi.get("/posts", {
             params: {
                 _page: pageParam,
                 _limit: limit,
                 q: query,
+                _sort: sortBy,
+                _order: order,
             },
         });
 
